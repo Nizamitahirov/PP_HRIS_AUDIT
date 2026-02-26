@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="az" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PashaPay – HRIS Audit 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME ===== */
+[data-theme="dark"] {
+  --bg: #060608;
+  --bg2: #0d0d10;
+  --bg3: #141418;
+  --bg4: #1c1c22;
+  --bg5: #232329;
+  --text: #F2EDE6;
+  --text2: #9990a0;
+  --text3: #52505a;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --nav-bg: rgba(6,6,8,0.97);
+  --shadow: 0 20px 60px rgba(0,0,0,0.7);
+  --card-glow: rgba(232,0,29,0.06);
+  --grid-color: rgba(255,255,255,0.025);
+  --chart-grid: rgba(255,255,255,0.05);
+  --tick-color: rgba(255,255,255,0.4);
+}
+[data-theme="light"] {
+  --bg: #FAF8F5;
+  --bg2: #FFFFFF;
+  --bg3: #F3F0EB;
+  --bg4: #EAE6DF;
+  --bg5: #DDD8CE;
+  --text: #1A1510;
+  --text2: #6B6258;
+  --text3: #A09888;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.13);
+  --nav-bg: rgba(250,248,245,0.97);
+  --shadow: 0 20px 60px rgba(0,0,0,0.1);
+  --card-glow: rgba(232,0,29,0.03);
+  --grid-color: rgba(0,0,0,0.03);
+  --chart-grid: rgba(0,0,0,0.07);
+  --tick-color: rgba(0,0,0,0.5);
+}
+
+:root {
+  --red:#E8001D; --orange:#FF5200; --amber:#FF9600; --gold:#FFD100;
+  --grad:linear-gradient(135deg,#E8001D 0%,#FF5200 50%,#FF9600 100%);
+  --grad-h:linear-gradient(90deg,#E8001D,#FF5200);
+  --C:#E8001D; --H:#FF4500; --M:#FF9500; --L:#FFD700;
+  --font:'Montserrat',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13.5px;line-height:1.65;overflow-x:hidden;transition:background .35s,color .35s;}
+
+/* ===== SCROLL BAR ===== */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:9999;width:0;transition:width .1s;}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  background:var(--nav-bg);backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+  height:58px;display:flex;align-items:center;padding:0 56px;gap:0;
+}
+.nav-logo{
+  font-family:var(--font);font-weight:900;font-size:15px;letter-spacing:4px;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-right:48px;white-space:nowrap;
+}
+.nav-links{display:flex;gap:28px;flex:1;}
+.nav-links a{
+  color:var(--text3);text-decoration:none;font-size:10.5px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;transition:color .2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--orange);}
+.theme-btn{
+  margin-left:auto;display:flex;align-items:center;gap:8px;
+  background:var(--bg3);border:1px solid var(--border2);border-radius:100px;
+  padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:.5px;
+  color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;
+  font-family:var(--font);
+}
+.theme-btn:hover{border-color:var(--orange);color:var(--orange);}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;padding:112px 80px 80px;
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);
+  background-size:56px 56px;
+}
+.hero-bg-grid::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 60% 40%,rgba(232,0,29,0.08),transparent 70%);
+}
+.hero-bg-grid::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%);
+  z-index:1;
+}
+.hero-left,.hero-right{position:relative;z-index:2;}
+
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(232,0,29,0.08);border:1px solid rgba(232,0,29,0.22);
+  color:var(--red);font-size:9.5px;font-weight:800;letter-spacing:2.8px;
+  text-transform:uppercase;padding:6px 14px;margin-bottom:28px;
+}
+.kicker-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 1.8s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}
+
+h1.hero-title{
+  font-family:var(--font);font-weight:900;
+  font-size:clamp(58px,6.5vw,92px);line-height:.88;letter-spacing:-1px;
+  margin-bottom:8px;
+}
+h1.hero-title .grad{
+  display:block;background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:13.5px;color:var(--text2);max-width:480px;
+  line-height:1.75;margin:22px 0 40px;font-weight:400;
+}
+
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+.pill{
+  display:flex;align-items:center;gap:7px;
+  padding:6px 14px;background:var(--bg3);border:1px solid var(--border2);
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+}
+.pill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+.hero-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:var(--border);gap:1px;border:1px solid var(--border);
+  max-width:460px;
+}
+.hm{background:var(--bg);padding:20px 22px;transition:background .2s;}
+.hm:hover{background:var(--bg3);}
+.hm-num{font-family:var(--font);font-weight:900;font-size:38px;line-height:1;margin-bottom:5px;}
+.hm-lbl{font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.hm-c .hm-num{color:var(--C);}
+.hm-h .hm-num{color:var(--H);}
+.hm-s .hm-num{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ===== SCORE CARD ===== */
+.score-card{
+  background:var(--bg2);border:1px solid var(--border2);
+  position:relative;overflow:hidden;
+}
+.score-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);
+}
+/* Glow bg */
+.score-card::after{
+  content:'';position:absolute;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,0,29,0.08),transparent 70%);
+  top:-80px;right:-80px;pointer-events:none;
+}
+.sc-inner{padding:40px 40px 36px;}
+.sc-eyebrow{
+  font-size:9.5px;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:24px;
+}
+
+/* Speedometer SVG */
+.speedometer-wrap{
+  display:flex;flex-direction:column;align-items:center;margin-bottom:28px;
+}
+
+.sc-verdict{
+  display:inline-block;
+  background:rgba(232,0,29,0.1);border:1px solid rgba(232,0,29,0.28);
+  color:var(--red);font-size:10px;font-weight:800;letter-spacing:2px;
+  padding:5px 13px;text-transform:uppercase;margin-bottom:28px;
+}
+
+.sc-bars{display:flex;flex-direction:column;gap:11px;}
+.sc-bar-row{display:flex;align-items:center;gap:13px;}
+.sc-bar-lbl{font-size:10px;font-weight:700;color:var(--text3);width:58px;letter-spacing:.5px;}
+.sc-bar-track{flex:1;height:5px;background:var(--bg4);border-radius:0;position:relative;}
+.sc-bar-fill{height:100%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.sc-bar-val{width:22px;font-family:var(--mono);font-size:11px;text-align:right;}
+.sc-footer{
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  font-size:10.5px;color:var(--text3);font-weight:500;
+}
+
+/* ===== SECTIONS ===== */
+section{padding:80px 80px;}
+.eyebrow{font-size:9.5px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+.sec-title{
+  font-family:var(--font);font-weight:900;
+  font-size:clamp(34px,3.5vw,52px);letter-spacing:-1px;line-height:.95;margin-bottom:44px;
+}
+hr.div{height:1px;background:var(--border);margin:0 80px;border:none;}
+
+/* ===== HIGHLIGHT ===== */
+.hl-box{
+  background:linear-gradient(135deg,rgba(232,0,29,0.06),rgba(255,82,0,0.03));
+  border:1px solid rgba(232,0,29,0.18);border-left:4px solid var(--red);
+  padding:26px 34px;margin-bottom:48px;
+}
+.hl-box p{font-size:13.5px;color:var(--text2);line-height:1.8;}
+.hl-box strong{color:var(--text);}
+
+/* ===== EXEC CARDS ===== */
+.exec-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:32px;
+}
+.ec{background:var(--bg2);padding:32px 26px;position:relative;transition:background .2s;}
+.ec:hover{background:var(--bg3);}
+.ec::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.ec-C::before{background:var(--C);}
+.ec-H::before{background:var(--H);}
+.ec-M::before{background:var(--M);}
+.ec-L::before{background:var(--L);}
+.ec-num{font-family:var(--font);font-weight:900;font-size:64px;line-height:1;margin-bottom:4px;}
+.ec-C .ec-num{color:var(--C);}
+.ec-H .ec-num{color:var(--H);}
+.ec-M .ec-num{color:var(--M);}
+.ec-L .ec-num{color:var(--L);}
+.ec-lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.ec-desc{font-size:11.5px;color:var(--text3);margin-top:6px;}
+
+/* Status bar */
+.stat-bar{display:flex;height:8px;margin-bottom:52px;border:1px solid var(--border);}
+
+/* ===== CHARTS SECTION ===== */
+.charts-container{
+  display:grid;
+  grid-template-columns:40fr 60fr;
+  gap:20px;
+  margin-bottom:56px;
+  align-items:stretch;
+}
+.chart-box{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:36px;display:flex;flex-direction:column;
+}
+.chart-box-title{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:24px;
+}
+.chart-canvas-wrap{flex:1;display:flex;align-items:center;justify-content:center;}
+
+/* ===== MODULE GRID ===== */
+.module-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;margin-bottom:56px;
+}
+.mc{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:20px;transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.mc:hover{border-color:rgba(232,0,29,.28);transform:translateY(-2px);box-shadow:var(--shadow);}
+.mc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.mc-name{font-size:11.5px;font-weight:700;line-height:1.35;}
+.badge{
+  font-size:8.5px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;padding:3px 7px;flex-shrink:0;margin-left:8px;
+}
+.b-C{background:rgba(232,0,29,.1);color:var(--C);border:1px solid rgba(232,0,29,.22);}
+.b-H{background:rgba(255,69,0,.1);color:var(--H);border:1px solid rgba(255,69,0,.22);}
+.b-M{background:rgba(255,149,0,.1);color:var(--M);border:1px solid rgba(255,149,0,.22);}
+.b-L{background:rgba(255,215,0,.1);color:var(--L);border:1px solid rgba(255,215,0,.22);}
+.mc-bars{display:flex;flex-direction:column;gap:7px;}
+.mc-br{display:flex;align-items:center;gap:9px;}
+.mc-bn{font-size:9.5px;color:var(--text3);width:54px;font-weight:600;}
+.mc-bt{flex:1;height:4px;background:var(--bg4);}
+.mc-bf{height:100%;}
+.mc-bv{width:16px;text-align:right;font-family:var(--mono);font-size:10px;color:var(--text3);}
+.mc-tot{font-size:9.5px;color:var(--text3);letter-spacing:1px;margin-top:12px;text-transform:uppercase;font-weight:600;}
+
+/* ===== DIAGRAM ===== */
+.dtabs{display:flex;gap:2px;margin-bottom:0;background:var(--border);}
+.dtab{
+  padding:12px 26px;font-size:10px;font-weight:800;letter-spacing:1.8px;
+  text-transform:uppercase;cursor:pointer;background:var(--bg2);
+  color:var(--text3);border:none;transition:all .2s;font-family:var(--font);
+}
+.dtab.active{background:var(--red);color:white;}
+.dtab:hover:not(.active){color:var(--text);background:var(--bg3);}
+.dpanel{display:none;}
+.dpanel.active{display:block;}
+.diag-wrap{background:var(--bg2);border:1px solid var(--border);border-top:none;padding:40px;overflow-x:auto;}
+.diag-note{
+  margin-top:12px;padding:15px 20px;background:var(--bg3);
+  border:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.8;
+}
+
+/* ===== HRIS GOVERNANCE ===== */
+.gov-section{margin-bottom:56px;}
+.gov-cat{background:var(--bg2);border:1px solid var(--border);margin-bottom:14px;}
+.gov-cat-head{
+  display:flex;align-items:center;gap:14px;padding:15px 22px;
+  cursor:pointer;background:var(--bg3);border-bottom:1px solid var(--border);
+  font-size:12.5px;font-weight:700;transition:background .2s;
+}
+.gov-cat-head:hover{background:var(--bg4);}
+.gov-cat-arrow{margin-left:auto;font-size:11px;color:var(--text3);transition:transform .3s;}
+.gov-cat-head.open .gov-cat-arrow{transform:rotate(90deg);}
+.gov-items{display:none;}
+.gov-head-row{
+  display:grid;grid-template-columns:2.2fr 1fr 2.8fr;
+  background:var(--bg4);border-bottom:1px solid var(--border2);
+}
+.gov-head-row>span{
+  padding:9px 18px;font-size:9px;font-weight:800;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--text3);
+  border-right:1px solid var(--border);
+}
+.gov-head-row>span:last-child{border-right:none;}
+.gov-item{display:grid;grid-template-columns:2.2fr 1fr 2.8fr;border-bottom:1px solid var(--border);}
+.gov-item:last-child{border-bottom:none;}
+.gov-item>div{padding:12px 18px;font-size:12px;border-right:1px solid var(--border);vertical-align:top;}
+.gov-item>div:last-child{border-right:none;}
+.gov-item-sub{font-weight:700;}
+.gov-item-note{color:var(--text2);line-height:1.65;}
+.sts-ok{color:#22C55E;font-weight:700;font-size:10.5px;}
+.sts-w{color:var(--M);font-weight:700;font-size:10.5px;}
+.sts-f{color:var(--C);font-weight:700;font-size:10.5px;}
+
+/* ===== PRIORITY MATRIX ===== */
+.matrix-box{background:var(--bg2);border:1px solid var(--border);padding:40px;margin-bottom:56px;}
+.matrix-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;margin-top:20px;}
+.mcell{padding:18px 20px;border:1px solid var(--border);}
+.mcell.m-u{background:rgba(232,0,29,.05);border-color:rgba(232,0,29,.2);}
+.mcell.m-p{background:rgba(255,82,0,.04);border-color:rgba(255,82,0,.15);}
+.mcell.m-d{background:rgba(255,149,0,.03);border-color:rgba(255,149,0,.12);}
+.mcell.m-f{background:rgba(255,215,0,.02);border-color:rgba(255,215,0,.1);}
+.mcell-lbl{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.mtag{
+  display:inline-block;font-size:10.5px;
+  background:var(--bg3);color:var(--text2);
+  padding:3px 9px;margin:2px 2px;border:1px solid var(--border2);
+  font-weight:600;
+}
+
+/* ===== DETAIL TABLES ===== */
+#detail-tables{padding:0 80px 80px;}
+.dmod{margin-bottom:18px;}
+.dmod-head{
+  display:flex;align-items:center;gap:16px;padding:17px 24px;
+  background:var(--bg2);border:1px solid var(--border);cursor:pointer;
+  font-family:var(--font);font-weight:800;font-size:15px;letter-spacing:.5px;
+  transition:background .2s;
+}
+.dmod-head:hover{background:var(--bg3);}
+.dmod-cnt{margin-left:auto;font-size:11.5px;color:var(--text3);font-weight:500;}
+.dmod-arr{color:var(--text3);font-size:11px;transition:transform .3s;}
+.dmod-head.collapsed .dmod-arr{transform:rotate(-90deg);}
+.ftbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-top:none;}
+.ftbl th{
+  text-align:left;padding:10px 16px;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text3);background:var(--bg3);
+  border-bottom:1px solid var(--border2);border-right:1px solid var(--border);
+  font-weight:800;
+}
+.ftbl th:last-child{border-right:none;}
+.ftbl td{
+  padding:12px 16px;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);vertical-align:top;font-size:12.5px;
+}
+.ftbl td:last-child{border-right:none;}
+.ftbl tr:last-child td{border-bottom:none;}
+.ftbl tr:hover td{background:rgba(255,255,255,.02);}
+[data-theme="light"] .ftbl tr:hover td{background:rgba(0,0,0,.02);}
+.fn-func{font-weight:700;}
+.fn-note{color:var(--text2);line-height:1.65;}
+.rp{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.8px;white-space:nowrap;}
+.rp::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.rp.Critical::before{background:var(--C);box-shadow:0 0 6px var(--C);}
+.rp.High::before{background:var(--H);}
+.rp.Medium::before{background:var(--M);}
+.rp.Low::before{background:var(--L);}
+
+/* ===== RECOMMENDATIONS ===== */
+.rec-list{display:flex;flex-direction:column;gap:12px;}
+.rec{
+  display:flex;gap:24px;padding:26px 28px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:4px solid;transition:background .2s,box-shadow .2s;
+}
+.rec:hover{background:var(--bg3);box-shadow:var(--shadow);}
+.rec.p1{border-left-color:var(--C);}
+.rec.p2{border-left-color:var(--H);}
+.rec.p3{border-left-color:var(--M);}
+.rec.p4{border-left-color:var(--L);}
+.rec-n{
+  font-family:var(--font);font-weight:900;font-size:46px;line-height:1;
+  color:var(--border2);min-width:52px;
+}
+.rec-body h4{font-size:14px;font-weight:700;margin-bottom:7px;}
+.rec-body p{font-size:12.5px;color:var(--text2);line-height:1.75;}
+.rec-tags{margin-top:10px;}
+.rtag{
+  display:inline-block;font-size:9px;font-weight:800;
+  letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;margin-right:6px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:50px 80px;display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{
+  font-family:var(--font);font-weight:900;font-size:30px;letter-spacing:5px;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.footer-info{font-size:11.5px;color:var(--text3);text-align:right;line-height:2;}
+
+/* ===== ANIMATIONS ===== */
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+.fade-up.vis{opacity:1;transform:translateY(0);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1200px){
+  .module-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:1050px){
+  .hero{grid-template-columns:1fr;padding:100px 36px 60px;}
+  section{padding:60px 36px;}
+  #detail-tables{padding:0 36px 60px;}
+  hr.div{margin:0 36px;}
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .exec-strip{grid-template-columns:repeat(2,1fr);}
+  .module-grid{grid-template-columns:repeat(2,1fr);}
+  .charts-container{grid-template-columns:1fr;}
+  footer{padding:40px 36px;flex-direction:column;gap:20px;text-align:center;}
+  .footer-info{text-align:center;}
+}
+@media(max-width:640px){
+  .module-grid{grid-template-columns:1fr;}
+  .matrix-grid{grid-template-columns:1fr;}
+  .exec-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-logo">PASHAPAY × HRIS</div>
+  <div class="nav-links">
+    <a href="#executive">Executive</a>
+    <a href="#diagram">Sistem Xəritəsi</a>
+    <a href="#governance">Governance</a>
+    <a href="#statistics">Statistika</a>
+    <a href="#details">Detallar</a>
+    <a href="#recommendations">Tövsiyələr</a>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()" id="tbtn">
+    <span id="ticon">🌙</span>&nbsp;<span id="tlbl">Dark</span>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-left">
+    <div class="kicker"><div class="kicker-dot"></div>Məxfi — Yalnız Rəhbərlik Üçün</div>
+    <h1 class="hero-title">
+      <span>HRIS</span>
+      <span class="grad">SİSTEM</span>
+      <span>AUDİT</span>
+    </h1>
+    <p class="hero-sub">PashaPay MMC üzrə mövcud 1C HRIS sisteminin əhatəli funksional, texniki və hüquqi uyğunluq auditi. 14 modul, 102 funksiya, əlavə HR Governance tapıntıları əsasında hazırlanmışdır.</p>
+    <div class="hero-pills">
+      <div class="pill"><div class="pill-dot" style="background:var(--C)"></div>Məlumat Təhlükəsizliyi</div>
+      <div class="pill"><div class="pill-dot" style="background:var(--H)"></div>AZ Lokalizasiyası</div>
+      <div class="pill"><div class="pill-dot" style="background:var(--M)"></div>İnteqrasiya Boşluqları</div>
+    </div>
+    <div class="hero-metrics">
+      <div class="hm hm-c"><div class="hm-num">13</div><div class="hm-lbl">Kritik</div></div>
+      <div class="hm hm-h"><div class="hm-num">22</div><div class="hm-lbl">Yüksək</div></div>
+      <div class="hm hm-s"><div class="hm-num">28</div><div class="hm-lbl">Sistem Balı</div></div>
+    </div>
+  </div>
+  <div class="hero-right fade-up">
+    <div class="score-card">
+      <div class="sc-inner">
+        <div class="sc-eyebrow">Sistem Sağlamlıq İndeksi</div>
+        <div class="speedometer-wrap">
+          <canvas id="speedoCanvas" width="280" height="160"></canvas>
+          <div style="text-align:center;margin-top:-12px;">
+            <div style="font-family:var(--font);font-weight:900;font-size:52px;line-height:1;color:var(--C);" id="speedoVal">0</div>
+            <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:2px;">/ 100</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;margin-bottom:20px;">
+          <div class="sc-verdict">⚠ KRİTİK VƏZİYYƏT</div>
+        </div>
+        <div class="sc-bars">
+          <div class="sc-bar-row">
+            <span class="sc-bar-lbl">Kritik</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--C);" data-w="36"></div></div>
+            <span class="sc-bar-val" style="color:var(--C)">13</span>
+          </div>
+          <div class="sc-bar-row">
+            <span class="sc-bar-lbl">Yüksək</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--H);" data-w="61"></div></div>
+            <span class="sc-bar-val" style="color:var(--H)">22</span>
+          </div>
+          <div class="sc-bar-row">
+            <span class="sc-bar-lbl">Orta</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--M);" data-w="100"></div></div>
+            <span class="sc-bar-val" style="color:var(--M)">36</span>
+          </div>
+          <div class="sc-bar-row">
+            <span class="sc-bar-lbl">Aşağı</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--L);" data-w="86"></div></div>
+            <span class="sc-bar-val" style="color:var(--L)">31</span>
+          </div>
+        </div>
+        <div class="sc-footer">
+          <span>Audit: 2025</span>
+          <span>14 Modul · 102 Tapıntı</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== DIAGRAM ===== -->
+<section id="diagram">
+  <div class="eyebrow">Sistem Arxitekturası</div>
+  <div class="sec-title">HRIS Ekosistem Xəritəsi</div>
+  <div class="dtabs">
+    <button class="dtab active" onclick="showDiag('current',this)">Cari Vəziyyət (As-Is)</button>
+    <button class="dtab" onclick="showDiag('best',this)">Best Practice (To-Be)</button>
+  </div>
+
+  <div class="dpanel active" id="dp-current">
+    <div class="diag-wrap">
+      <svg viewBox="0 0 980 530" width="100%" style="min-width:680px;font-family:'Montserrat',sans-serif;">
+        <defs>
+          <marker id="am" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#FF5200" opacity=".8"/></marker>
+          <marker id="abr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#E8001D" opacity=".7"/></marker>
+          <marker id="agr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#888" opacity=".6"/></marker>
+          <linearGradient id="xlG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a6b3c"/><stop offset="100%" stop-color="#0d4a27"/></linearGradient>
+          <linearGradient id="ocG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b52b1e"/><stop offset="100%" stop-color="#7a1c13"/></linearGradient>
+          <linearGradient id="hfG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1c5f8a"/><stop offset="100%" stop-color="#0f3d5c"/></linearGradient>
+          <linearGradient id="jrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0047b8"/><stop offset="100%" stop-color="#00339e"/></linearGradient>
+          <linearGradient id="hrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7e2d9f"/><stop offset="100%" stop-color="#5a1f75"/></linearGradient>
+          <linearGradient id="poG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#bf4a00"/><stop offset="100%" stop-color="#8c3500"/></linearGradient>
+          <linearGradient id="emG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a7840"/><stop offset="100%" stop-color="#0f5028"/></linearGradient>
+          <linearGradient id="isG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d15f00"/><stop offset="100%" stop-color="#9a4500"/></linearGradient>
+          <filter id="gl"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+
+        <!-- Excel center -->
+        <g transform="translate(490,235)">
+          <rect x="-68" y="-44" width="136" height="88" rx="3" fill="url(#xlG)" filter="url(#gl)"/>
+          <text x="0" y="-12" text-anchor="middle" fill="white" font-weight="800" font-size="15">📊 EXCEL</text>
+          <text x="0" y="8" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="10">Qeyri-rəsmi Hub</text>
+          <text x="0" y="25" text-anchor="middle" fill="#FFD700" font-size="9.5">⚠ Real Sistem Yox</text>
+          <circle cx="0" cy="0" r="76" fill="none" stroke="#E8001D" stroke-width="1.5" stroke-dasharray="6,3" opacity=".4"/>
+          <circle cx="0" cy="0" r="90" fill="none" stroke="#FF5200" stroke-width=".5" stroke-dasharray="3,5" opacity=".2"/>
+        </g>
+
+        <!-- 1C -->
+        <g transform="translate(150,235)">
+          <rect x="-70" y="-48" width="140" height="96" rx="3" fill="url(#ocG)"/>
+          <rect x="-70" y="-48" width="140" height="4" rx="2" fill="#ff7b7b"/>
+          <text x="0" y="-20" text-anchor="middle" fill="white" font-weight="800" font-size="15">1C HRIS</text>
+          <text x="0" y="-1" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Auditlənən Sistem</text>
+          <text x="0" y="15" text-anchor="middle" fill="#FFCC88" font-size="9">Tam istifadə edilmir</text>
+          <text x="0" y="30" text-anchor="middle" fill="#ff9999" font-size="9">RU qanunu ilə işləyir</text>
+          <rect x="24" y="-62" width="58" height="16" rx="2" fill="#E8001D"/>
+          <text x="53" y="-50" text-anchor="middle" fill="white" font-size="7.5" font-weight="800">AUDİT EDİLƏN</text>
+        </g>
+
+        <!-- HRSS -->
+        <g transform="translate(150,400)">
+          <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#hrG)"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">HRSS</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Məzuniyyət Sistemi</text>
+          <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">1C ilə inteqrasiya yox</text>
+        </g>
+
+        <!-- Handflow -->
+        <g transform="translate(150,80)">
+          <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#hfG)"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">Handflow</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">ATS (Rus Sistem)</text>
+          <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">HRIS ilə inteqrasiya yox</text>
+        </g>
+
+        <!-- Jira -->
+        <g transform="translate(490,430)">
+          <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#jrG)"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">Jira</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Onboarding & Offer</text>
+          <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">Manual data doldurma</text>
+        </g>
+
+        <!-- iSpring -->
+        <g transform="translate(830,80)">
+          <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#isG)"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">iSpring</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Performance / LMS</text>
+          <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">HRIS ilə inteqrasiya yox</text>
+        </g>
+
+        <!-- ƏMAS -->
+        <g transform="translate(830,235)">
+          <rect x="-65" y="-44" width="130" height="88" rx="3" fill="url(#emG)"/>
+          <text x="0" y="-14" text-anchor="middle" fill="white" font-weight="800" font-size="13">ƏMAS/SİMA</text>
+          <text x="0" y="5" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Dövlət Sistemi</text>
+          <text x="0" y="21" text-anchor="middle" fill="#ff9999" font-size="9">⚠ İnteqrasiya yoxdur</text>
+          <text x="0" y="36" text-anchor="middle" fill="#FFCC88" font-size="9">Manual telefon təsdiqi</text>
+          <circle cx="50" cy="-36" r="9" fill="#E8001D"/>
+          <text x="50" y="-32" text-anchor="middle" fill="white" font-size="9" font-weight="800">!</text>
+        </g>
+
+        <!-- Portal -->
+        <g transform="translate(830,400)">
+          <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#poG)"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">Daxili Portal</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">İntranet</text>
+          <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">Yalnız user guide</text>
+        </g>
+
+        <!-- Connections -->
+        <line x1="220" y1="235" x2="424" y2="235" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+        <line x1="424" y1="245" x2="220" y2="245" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+        <text x="312" y="228" text-anchor="middle" fill="#666" font-size="8.5">manual export</text>
+
+        <line x1="210" y1="370" x2="430" y2="268" stroke="#E8001D" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#abr)"/>
+        <text x="298" y="335" text-anchor="middle" fill="#E8001D" font-size="8.5" transform="rotate(-33,298,335)">inteqrasiya yox</text>
+
+        <line x1="210" y1="96" x2="430" y2="205" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+        <text x="298" y="136" text-anchor="middle" fill="#666" font-size="8.5" transform="rotate(-23,298,136)">manual</text>
+
+        <line x1="210" y1="85" x2="430" y2="400" stroke="#0052CC" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#agr)" opacity=".5"/>
+
+        <line x1="556" y1="222" x2="768" y2="222" stroke="#E8001D" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#abr)"/>
+        <text x="662" y="214" text-anchor="middle" fill="#E8001D" font-size="8.5">inteqrasiya yox</text>
+
+        <line x1="556" y1="255" x2="768" y2="380" stroke="#E8001D" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#abr)" opacity=".6"/>
+
+        <line x1="770" y1="96" x2="558" y2="205" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+
+        <line x1="490" y1="396" x2="490" y2="279" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#agr)"/>
+
+        <text x="490" y="26" text-anchor="middle" fill="#FF5200" font-size="12" font-weight="800" letter-spacing="2">CARİ VƏZİYYƏT — EXCEL ASILIĞI KRİTİK SƏVİYYƏDƏDİR</text>
+
+        <!-- Bank missing -->
+        <g transform="translate(490,495)">
+          <rect x="-110" y="-18" width="220" height="36" rx="2" fill="rgba(232,0,29,.12)" stroke="#E8001D" stroke-width=".8" stroke-dasharray="4,2"/>
+          <text x="0" y="-2" text-anchor="middle" fill="#E8001D" font-size="10.5" font-weight="800">⚠ Bank İnteqrasiyası — MÖVCUD DEYİL</text>
+          <text x="0" y="14" text-anchor="middle" fill="#888" font-size="9">Maaş ödənişi manual Excel ilə aparılır</text>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(20,500)">
+          <line x1="0" y1="4" x2="20" y2="4" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="24" y="8" fill="#666" font-size="9">Manual</text>
+          <line x1="100" y1="4" x2="120" y2="4" stroke="#E8001D" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="124" y="8" fill="#666" font-size="9">İnteqrasiya yox / Xətalı</text>
+        </g>
+      </svg>
+    </div>
+    <div class="diag-note"><strong style="color:var(--red)">Cari vəziyyət:</strong> Excel bütün sistemlər arasında qeyri-rəsmi "inteqrasiya mərkəzi" rolunu oynayır. 1C HRIS tam istifadə edilmir, Rusiya qanunvericiliyi ilə işləyir. HRSS, Handflow, iSpring, Jira arasında real inteqrasiya yoxdur. ƏMAS manualdır, bank inteqrasiyası mövcud deyil.</div>
+  </div>
+
+  <div class="dpanel" id="dp-best">
+    <div class="diag-wrap">
+      <svg viewBox="0 0 1000 560" width="100%" style="min-width:680px;font-family:'Montserrat',sans-serif;">
+        <defs>
+          <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#22C55E"/></marker>
+          <marker id="ab2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#60A5FA"/></marker>
+          <linearGradient id="coreG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E8001D"/><stop offset="100%" stop-color="#FF5200"/></linearGradient>
+          <filter id="glG"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+
+        <text x="500" y="28" text-anchor="middle" fill="#22C55E" font-size="12" font-weight="800" letter-spacing="2">BEST PRACTICE — VAHİD HRIS MƏRKƏZİ + REAL-TIME API İNTEQRASİYA</text>
+
+        <!-- Core -->
+        <g transform="translate(500,275)">
+          <circle cx="0" cy="0" r="84" fill="url(#coreG)" filter="url(#glG)"/>
+          <circle cx="0" cy="0" r="94" fill="none" stroke="#FF5200" stroke-width="1.5" opacity=".4"/>
+          <circle cx="0" cy="0" r="108" fill="none" stroke="rgba(255,82,0,.15)" stroke-width="1"/>
+          <text x="0" y="-20" text-anchor="middle" fill="white" font-weight="900" font-size="17">HRIS</text>
+          <text x="0" y="0" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="10.5">Unified Core</text>
+          <text x="0" y="18" text-anchor="middle" fill="rgba(255,220,100,.9)" font-size="9.5">AZ Lokalizasiya</text>
+          <text x="0" y="35" text-anchor="middle" fill="rgba(255,220,100,.9)" font-size="9.5">SSO + 2FA + RBAC</text>
+        </g>
+
+        <!-- Satellites -->
+        <!-- ATS -->
+        <g transform="translate(175,95)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#1a5f8a"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">ATS Sistemi</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Handflow/Müasir</text>
+          <text x="0" y="25" text-anchor="middle" fill="#9dd5ff" font-size="9">API inteqrasiya</text>
+        </g>
+        <line x1="233" y1="120" x2="415" y2="222" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="415" y1="228" x2="233" y2="124" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- LMS -->
+        <g transform="translate(175,275)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#9a4a00"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">LMS / PM</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">iSpring/Successor</text>
+          <text x="0" y="25" text-anchor="middle" fill="#ffd" font-size="9">2-yönlü sinxron</text>
+        </g>
+        <line x1="235" y1="266" x2="395" y2="266" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="395" y1="275" x2="235" y2="275" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- ƏMAS -->
+        <g transform="translate(175,455)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#196b3a"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">ƏMAS/DSMF</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Dövlət Sistemləri</text>
+          <text x="0" y="25" text-anchor="middle" fill="#a0ffcc" font-size="9">API/RPA inteqrasiya</text>
+        </g>
+        <line x1="232" y1="428" x2="418" y2="326" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="418" y1="320" x2="232" y2="422" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- Bank -->
+        <g transform="translate(500,95)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#1a4a7a"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">Bank Sistemi</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Maaş köçürməsi</text>
+          <text x="0" y="25" text-anchor="middle" fill="#9dd5ff" font-size="9">Birbaşa inteqrasiya</text>
+        </g>
+        <line x1="500" y1="128" x2="500" y2="188" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="508" y1="188" x2="508" y2="128" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- Self-Service -->
+        <g transform="translate(825,95)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#6b28a0"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">Self-Service</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">İşçi Portalı</text>
+          <text x="0" y="25" text-anchor="middle" fill="#d8aaff" font-size="9">Mobile + Web</text>
+        </g>
+        <line x1="768" y1="116" x2="582" y2="222" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="582" y1="228" x2="768" y2="122" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- 1C ERP -->
+        <g transform="translate(825,275)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#9a2218"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">1C ERP</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Mühasibat/Payroll</text>
+          <text x="0" y="25" text-anchor="middle" fill="#ffaaaa" font-size="9">Xərc mərkəzləri</text>
+        </g>
+        <line x1="766" y1="258" x2="594" y2="258" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="594" y1="268" x2="766" y2="268" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- BI -->
+        <g transform="translate(825,455)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#145a32"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">BI / Analytics</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Power BI</text>
+          <text x="0" y="25" text-anchor="middle" fill="#a0ffcc" font-size="9">Real-time dashboard</text>
+        </g>
+        <line x1="768" y1="428" x2="582" y2="326" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="582" y1="320" x2="768" y2="422" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- Jira -->
+        <g transform="translate(500,455)">
+          <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#003899"/>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">Jira</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Workflow / Tasks</text>
+          <text x="0" y="25" text-anchor="middle" fill="#9dd5ff" font-size="9">Onboarding axını</text>
+        </g>
+        <line x1="500" y1="422" x2="500" y2="360" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
+        <line x1="508" y1="360" x2="508" y2="422" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+
+        <!-- Legend -->
+        <g transform="translate(20,528)">
+          <line x1="0" y1="4" x2="22" y2="4" stroke="#22C55E" stroke-width="2" marker-end="url(#ag)"/>
+          <text x="26" y="8" fill="#888" font-size="9">HRIS → Sistem (push)</text>
+          <line x1="165" y1="4" x2="187" y2="4" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#ab2)"/>
+          <text x="191" y="8" fill="#888" font-size="9">Sistem → HRIS (pull/sync)</text>
+        </g>
+      </svg>
+    </div>
+    <div class="diag-note" style="background:rgba(34,197,94,0.04);border-color:rgba(34,197,94,0.2)"><strong style="color:#22C55E">Best Practice:</strong> Vahid HRIS platforması bütün alt sistemlərlə real-time API inteqrasiyası ilə qoşulur. Excel "inteqrasiya vasitəsi" kimi aradan çıxır. AZ Əmək Məcəlləsinə tam lokalizasiya, SSO+2FA, ƏMAS/DSMF avtomatik hesabatlar, bank birbaşa inteqrasiyası həyata keçirilir.</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== GOVERNANCE ===== -->
+<section id="governance">
+  <div class="eyebrow">HRIS ilə Əlaqəli</div>
+  <div class="sec-title">Sistem Tapıntıları: Governance</div>
+  <div class="hl-box">
+    <p><strong>Diqqət:</strong> Aşağıdakı HR governance tapıntıları HRIS sistemininin funksionallıq boşluqlarından birbaşa qaynaqlanır. Sistemin tam işləməməsi proseslərin manuallığını artırır, qanunvericiliyə uyğunsuzluq riskini artırır.</p>
+  </div>
+  <div class="gov-section" id="gov-content"></div>
+</section>
+
+<hr class="div">
+
+<!-- ===== EXECUTIVE ===== -->
+<section id="executive">
+  <div class="eyebrow">Executive Summary</div>
+  <div class="sec-title">İcraçı Xülasə</div>
+  <div class="hl-box">
+    <p><strong>Əsas nəticə:</strong> PashaPay-ın cari 1C HRIS sistemi ciddi funksional boşluqlar, Azərbaycan qanunvericiliyinə uyğunsuzluq, məlumat təhlükəsizliyi riskləri və vendor asılılığı ilə xarakterizə olunur. Excel qeyri-rəsmi "inteqrasiya mərkəzi"nə çevrilib. 13 kritik risk dərhal müdaxilə tələb edir.</p>
+  </div>
+  <div class="exec-strip fade-up">
+    <div class="ec ec-C"><div class="ec-num">13</div><div class="ec-lbl">Kritik Risk</div><div class="ec-desc">Dərhal müdaxilə tələb edir</div></div>
+    <div class="ec ec-H"><div class="ec-num">22</div><div class="ec-lbl">Yüksək Risk</div><div class="ec-desc">Qısa müddətdə həll edilməli</div></div>
+    <div class="ec ec-M"><div class="ec-num">36</div><div class="ec-lbl">Orta Risk</div><div class="ec-desc">Orta müddətli plan</div></div>
+    <div class="ec ec-L"><div class="ec-num">31</div><div class="ec-lbl">Aşağı Risk</div><div class="ec-desc">Uzunmüddətli yol xəritəsi</div></div>
+  </div>
+  <div class="stat-bar">
+    <div style="flex:13;background:var(--C)"></div>
+    <div style="flex:22;background:var(--H)"></div>
+    <div style="flex:36;background:var(--M)"></div>
+    <div style="flex:31;background:var(--L)"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== STATISTICS ===== -->
+<section id="statistics">
+  <div class="eyebrow">Kəmiyyət Analizi</div>
+  <div class="sec-title">Statistik Baxış</div>
+
+  <div class="charts-container fade-up">
+    <!-- PIE 40% -->
+    <div class="chart-box">
+      <div class="chart-box-title">Risk Paylanması</div>
+      <div class="chart-canvas-wrap" style="max-height:260px;">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+    <!-- BAR 60% -->
+    <div class="chart-box">
+      <div class="chart-box-title">Modul Üzrə Risk Sayı — Kritik & Yüksək</div>
+      <div class="chart-canvas-wrap" style="height:340px;">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-grid" id="mod-grid"></div>
+</section>
+
+<hr class="div">
+
+<!-- ===== PRIORITY MATRIX ===== -->
+<section>
+  <div class="eyebrow">Strateji Planlaşdırma</div>
+  <div class="sec-title">Prioritet Matrisi</div>
+  <div class="matrix-box fade-up">
+    <div style="font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;font-weight:800">↑ YÜKSƏK TƏSİR</div>
+    <div class="matrix-grid">
+      <div class="mcell m-u">
+        <div class="mcell-lbl">🔴 Dərhal — Yüksək Təsir / İndi</div>
+        <span class="mtag">Test Mühiti</span><span class="mtag">Məlumat Maskalanması</span>
+        <span class="mtag">2FA Tətbiqi</span><span class="mtag">AZ ƏM Lokalizasiyası</span>
+        <span class="mtag">ƏMAS İnteqrasiyası</span><span class="mtag">HR Siyasət Çərçivəsi</span>
+      </div>
+      <div class="mcell m-p">
+        <div class="mcell-lbl">🟠 Planlaşdır — Yüksək Təsir / Gələcək</div>
+        <span class="mtag">Bank İnteqrasiyası</span><span class="mtag">Dövlət Hesabatları</span>
+        <span class="mtag">RBAC Avtomatlaşması</span><span class="mtag">Məzuniyyət Balansı</span>
+        <span class="mtag">Onboarding Şablonları</span><span class="mtag">IDP Qurulması</span>
+      </div>
+      <div class="mcell m-d">
+        <div class="mcell-lbl">🟡 Nəzarətdə — Aşağı Təsir / İndi</div>
+        <span class="mtag">SSO İnteqrasiyası</span><span class="mtag">Sənəd Şablonları</span>
+        <span class="mtag">Bulk Upload</span><span class="mtag">Audit Log</span>
+        <span class="mtag">Vəzifə Təlimatları</span>
+      </div>
+      <div class="mcell m-f">
+        <div class="mcell-lbl">⚪ Uzunmüddətli — Aşağı Təsir / Gələcək</div>
+        <span class="mtag">Org Chart</span><span class="mtag">Davamiyyət İnteqrasiyası</span>
+        <span class="mtag">AI Analitika</span><span class="mtag">Power BI</span>
+      </div>
+    </div>
+    <div style="font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-top:8px;font-weight:800">← İNDİ ↔ GƏLƏCƏKdə →</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ===== DETAILS ===== -->
+<section id="details" style="padding-bottom:20px;">
+  <div class="eyebrow">Ətraflı Nəticələr</div>
+  <div class="sec-title">Modul Üzrə Audit Tapıntıları</div>
+</section>
+<div id="detail-tables"></div>
+
+<hr class="div">
+
+<!-- ===== RECOMMENDATIONS ===== -->
+<section id="recommendations">
+  <div class="eyebrow">İrəli Addımlar</div>
+  <div class="sec-title">Tövsiyələr</div>
+  <div class="rec-list fade-up">
+    <div class="rec p1"><div class="rec-n">01</div><div class="rec-body"><h4>Test Mühitinin Dərhal Qurulması</h4><p>Vendor bütün sazlamaları prodaksiya mühitdə aparır — əməkdaşların fərdi məlumatlarına vendor girişi var. Bu şəxsi məlumatların qorunması qanununu birbaşa pozur. Ayrı staging/test mühit tələb edilməli, müqavilə şərtləri yenidən baxılmalıdır.</p><div class="rec-tags"><span class="rtag b-C">Dərhal — 1 Həftə</span></div></div></div>
+    <div class="rec p1"><div class="rec-n">02</div><div class="rec-body"><h4>Məlumat Şifrələmə və Maskalanma Tətbiqi</h4><p>Maaş, FİN, şəxsiyyət məlumatları nə sistem, nə databaza səviyyəsində qorunmur. GDPR/yerli qanunvericiliyə açıq pozuntudur. Həm proqram, həm verilənlər bazası səviyyəsində encryption tətbiq edilməlidir.</p><div class="rec-tags"><span class="rtag b-C">Dərhal — 2 Həftə</span></div></div></div>
+    <div class="rec p1"><div class="rec-n">03</div><div class="rec-body"><h4>Azərbaycan ƏM Lokalizasiyası</h4><p>Sistem Rusiya ƏM normaları ilə işləyir. Məzuniyyət balansı, gecə iş əmsalı, ezamiyyət normaları, iş vaxtı uçotu — hamısı Azərbaycan Əmək Məcəlləsinə uyğun yenidən konfiqurasiya edilməlidir.</p><div class="rec-tags"><span class="rtag b-C">1–2 Ay</span></div></div></div>
+    <div class="rec p1"><div class="rec-n">04</div><div class="rec-body"><h4>ƏMAS İnteqrasiyası (RPA)</h4><p>Əmək müqavilələrinin dövlət portalına ötürülməsi qanuni tələbdir. ƏMAS qapalı sistem olduğundan RPA texnologiyası ilə avtomatlaşdırma həyata keçirilməlidir.</p><div class="rec-tags"><span class="rtag b-C">1–2 Ay</span></div></div></div>
+    <div class="rec p2"><div class="rec-n">05</div><div class="rec-body"><h4>İki Faktorlu Autentifikasiya (2FA/MFA)</h4><p>Şifrə expiry yoxdur, 2FA tətbiq edilmir. HR adminlər üçün mütləq tətbiq edilməlidir. SSO ilə birlikdə planlaşdırılması tövsiyə olunur.</p><div class="rec-tags"><span class="rtag b-H">2–3 Ay</span></div></div></div>
+    <div class="rec p2"><div class="rec-n">06</div><div class="rec-body"><h4>Backup Sisteminin Yenidən Qurulması</h4><p>Restore zamanı istənməyən datalar da qayıdır, bəzən məlumatlar itir. Diferensial backup sxemi, müntəzəm test bərpası proseduru, məlumat itki jurnalı tələb olunur.</p><div class="rec-tags"><span class="rtag b-H">2–3 Ay</span></div></div></div>
+    <div class="rec p2"><div class="rec-n">07</div><div class="rec-body"><h4>Dövlət Hesabatları (1-Əmək, 4-Əmək, DSMF)</h4><p>Bu hesabatlar sistem üzərindən qurula bilər lakin konfiqurasiya edilməyib. XML formatında avtomatik generasiya tətbiq edilməlidir. Hazırda Excel üzərindən manual aparılır.</p><div class="rec-tags"><span class="rtag b-H">3–4 Ay</span></div></div></div>
+    <div class="rec p2"><div class="rec-n">08</div><div class="rec-body"><h4>HR Siyasət Çərçivəsinin Tamamlanması</h4><p>İşə qəbul proseduru, intizam araşdırma siyasəti, DEI siyasəti, şikayət mexanizmi, RACI matrisi mövcud deyil. Bu siyasətlər HRIS-ə inteqrasiya edilməli, sistem üzərindən idarə olunmalıdır.</p><div class="rec-tags"><span class="rtag b-H">3–5 Ay</span></div></div></div>
+    <div class="rec p3"><div class="rec-n">09</div><div class="rec-body"><h4>Vendor Asılılığının Azaldılması + SLA</h4><p>Rol idarəetməsi, şablon hazırlama, sazlama kimi funksiyalar daxili komandanın öhdəliyinə verilməlidir. Vendor müqavilə şərtləri, SLA məsuliyyəti yenidən nəzərdən keçirilməlidir.</p><div class="rec-tags"><span class="rtag b-M">4–6 Ay</span></div></div></div>
+    <div class="rec p3"><div class="rec-n">10</div><div class="rec-body"><h4>Vahid HRIS Ekosistemi — Excel Asılılığından Çıxış</h4><p>HRIS mərkəz olmaqla, bank, ƏMAS, iSpring, Jira, ATS, 1C ERP ilə real API inteqrasiyaları qurulmalı, bütün məlumat axını avtomatlaşdırılmalıdır. Excel yalnız analiz vasitəsi kimi istifadə edilməlidir.</p><div class="rec-tags"><span class="rtag b-M">6–12 Ay</span></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">PASHAPAY</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:8px;font-weight:600;letter-spacing:1px;">HRIS SİSTEM AUDİT HESABATI · 2025</div>
+  </div>
+  <div class="footer-info">Hazırladı: HR Audit Komandası<br>Status: Məxfi — Yalnız Rəhbərlik Üçün<br>© 2025 PashaPay MMC</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  const h=document.documentElement, d=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('ticon').textContent=d?'☀️':'🌙';
+  document.getElementById('tlbl').textContent=d?'Light':'Dark';
+  drawSpeedometer(28);
+  updateCharts();
+}
+
+/* ===== DIAGRAM TABS ===== */
+function showDiag(id,btn){
+  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('dp-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ===== SPEEDOMETER ===== */
+function drawSpeedometer(val){
+  const canvas=document.getElementById('speedoCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=280,H=160,cx=140,cy=145,r=110;
+  ctx.clearRect(0,0,W,H);
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const bgClr=isDark?'#0d0d10':'#ffffff';
+  const txtClr=isDark?'rgba(255,255,255,0.35)':'rgba(0,0,0,0.3)';
+
+  const pi=Math.PI;
+  const startA=pi;const endA=0;
+
+  // Track segments
+  const segs=[
+    {from:0,to:25,color:'#2a1a1a'},{from:25,to:50,color:'#3a1a1a'},
+    {from:50,to:75,color:'#4a2a1a'},{from:75,to:100,color:'#5a3a1a'}
+  ];
+  segs.forEach(s=>{
+    const sa=pi+(s.from/100)*pi;
+    const ea=pi+(s.to/100)*pi;
+    ctx.beginPath();ctx.arc(cx,cy,r,sa,ea);
+    ctx.lineWidth=18;ctx.strokeStyle=isDark?s.color:'#e5e0d8';ctx.stroke();
+  });
+
+  // Colored arc zones
+  const zones=[
+    {f:0,t:30,c:'#E8001D'},{f:30,t:50,c:'#FF5200'},
+    {f:50,t:70,c:'#FF9500'},{f:70,t:100,c:'#22C55E'}
+  ];
+  zones.forEach(z=>{
+    const sa=pi+(z.f/100)*pi;
+    const ea=pi+(z.t/100)*pi;
+    ctx.beginPath();ctx.arc(cx,cy,r,sa,ea);
+    ctx.lineWidth=12;ctx.strokeStyle=z.c;ctx.globalAlpha=0.7;ctx.stroke();
+    ctx.globalAlpha=1;
+  });
+
+  // Tick marks
+  for(let i=0;i<=10;i++){
+    const a=pi+(i/10)*pi;
+    const x1=cx+Math.cos(a)*(r-20);const y1=cy+Math.sin(a)*(r-20);
+    const x2=cx+Math.cos(a)*(r-28);const y2=cy+Math.sin(a)*(r-28);
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.lineWidth=i%5===0?2:1;ctx.strokeStyle=txtClr;ctx.stroke();
+    if(i%5===0){
+      const tx=cx+Math.cos(a)*(r-42);const ty=cy+Math.sin(a)*(r-42);
+      ctx.fillStyle=txtClr;ctx.font='bold 9px Montserrat';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(i*10,tx,ty);
+    }
+  }
+
+  // Needle
+  const needleA=pi+(val/100)*pi;
+  const nx=cx+Math.cos(needleA)*(r-22);const ny=cy+Math.sin(needleA)*(r-22);
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(nx,ny);
+  ctx.lineWidth=3;
+  const ng=ctx.createLinearGradient(cx,cy,nx,ny);
+  ng.addColorStop(0,'rgba(232,0,29,0.2)');ng.addColorStop(1,'#E8001D');
+  ctx.strokeStyle=ng;ctx.lineCap='round';ctx.stroke();
+
+  // Center circle
+  const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,10);
+  cg.addColorStop(0,'#E8001D');cg.addColorStop(1,'#880010');
+  ctx.beginPath();ctx.arc(cx,cy,10,0,2*pi);ctx.fillStyle=cg;ctx.fill();
+
+  // Labels
+  ctx.font='bold 10px Montserrat';ctx.textAlign='center';ctx.fillStyle=txtClr;
+  ctx.fillText('KRİTİK',cx-80,cy+22);
+  ctx.fillText('YAXŞI',cx+78,cy+22);
+}
+
+let speedoTarget=28, speedoCurrent=0;
+function animateSpeedometer(){
+  if(speedoCurrent<speedoTarget){
+    speedoCurrent=Math.min(speedoCurrent+0.8,speedoTarget);
+    drawSpeedometer(speedoCurrent);
+    const numEl=document.getElementById('speedoVal');
+    if(numEl)numEl.textContent=Math.round(speedoCurrent);
+    requestAnimationFrame(animateSpeedometer);
+  }
+}
+
+/* ===== AUDIT DATA ===== */
+const auditData=[
+  {m:"Əsas Sistem (Core)",f:"Çox Şirkətli Struktur",r:"High",n:"Çoxşirkətli struktur mövcud deyil. Bütün proseslər cari sistem üzərindən qurulub."},
+  {m:"Əsas Sistem (Core)",f:"Test/Development Mühiti",r:"Critical",n:"Test mühiti anlayışı yoxdur. Vendor sazlamaları birbaşa prod mühitdə aparır. Əməkdaşların fərdi məlumatlarına vendor girişi var — fərdi məlumatların qorunması qanununa ziddir."},
+  {m:"Əsas Sistem (Core)",f:"Kütləvi Əməliyyatlar (Bulk)",r:"Medium",n:"Bulk operation adekvat işləmir. Excel-dən bulk upload edəndə bəzi datalar səbəbsiz yüklənmir, xəta mesajı göstərilmir."},
+  {m:"Əsas Sistem (Core)",f:"Dil Dəstəyi & Lokalizasiya",r:"Medium",n:"İnterfeysdə 3 dilin qarışığı. Əsas dil rusdur. Digər dillərə keçiddə keyfiyyətsiz tərcümələr."},
+  {m:"Əsas Sistem (Core)",f:"API İnteqrasiya Qatı",r:"Medium",n:"Heç bir sistem ilə inteqrasiya qurulmayıb. ƏMAS inteqrasiyası sifariş verilib, lakin əvvəlki çatışmazlıqlar həll edilmədən keçilməyib."},
+  {m:"Əsas Sistem (Core)",f:"Məlumat İdxalı (Import)",r:"Low",n:"Məlumatlar tam yüklənmir. Bəzi sətirlər səbəbsiz yüklənmir, debug imkanı yoxdur."},
+  {m:"Əsas Sistem (Core)",f:"Ehtiyat Nüsxə (Backup)",r:"Critical",n:"Backup var, lakin yanlış məntiqli. Bəzən datalar itir. Restore zamanı lazım olmayan datalar da geri qayıdır. Siyasət mövcud deyil."},
+  {m:"Əsas Sistem (Core)",f:"Mobil Uyğunluq",r:"Low",n:"Self-service portal mobil üzərindən qismən işləyir, lakin funksionallıq tamamlanmayıb."},
+  {m:"Əsas Sistem (Core)",f:"Korporativ Brending",r:"Low",n:"Şirkətin brendinqinə uyğun tənzimləmə mümkün deyil."},
+  {m:"Sistem Performansı",f:"Yükləmə Sürəti",r:"High",n:"Hesabatlara girişdə 2-3 dəqiqə gözləmə. Çox vaxt zaman aşımı (timeout) xətası ilə bitir."},
+  {m:"Sistem Performansı",f:"Eyni Vaxtda İstifadəçi",r:"Medium",n:"Çoxlu istifadəçi qoşulduqda sistem daha da yavaşlayır."},
+  {m:"Sistem Performansı",f:"Verilənlər Bazası Optimallaşması",r:"Medium",n:"Sorğular optimallaşdırılmayıb. Reporting üçün bütün cədvəl skan edilir."},
+  {m:"Təhlükəsizlik",f:"İki Addımlı Giriş (2FA/MFA)",r:"High",n:"İkili autentifikasiya mövcud deyil. Şifrə expiry yoxdur. Əməkdaşlar yalnız username/parol ilə daxil olur."},
+  {m:"Təhlükəsizlik",f:"Vahid Giriş (SSO)",r:"Medium",n:"Single Sign On imkanı mövcud deyil. Hər sistem üçün ayrıca hesab idarəsi tələb olunur."},
+  {m:"Təhlükəsizlik",f:"Rol İcazələri (RBAC)",r:"High",n:"Rolların assign edilməsi vendor tərəfindən aparılır. Daxili admin edə bilmir — vendor asılılığı yaradır."},
+  {m:"Təhlükəsizlik",f:"Məlumat Maskalanması",r:"High",n:"Nə sistem, nə databaza səviyyəsində maskalanma/şifrələmə yoxdur. Maaş, FİN, şəxsiyyət məlumatları açıqdır."},
+  {m:"Təhlükəsizlik",f:"Dəyişiklik Jurnalı (Audit Log)",r:"Medium",n:"Loqlar informativ deyil. Hansı istifadəçinin nəyi, nə vaxt dəyişdirdiyi izlənilə bilmir."},
+  {m:"Təhlükəsizlik",f:"GDPR / Məlumat Qorunması",r:"Medium",n:"Maskalanma/şifrələmə olmadığından məlumat qorunmasında ciddi problemlər var. VPN tətbiq edilib, lakin kifayət deyil."},
+  {m:"Təhlükəsizlik",f:"Parol Siyasəti",r:"Medium",n:"Parol siyasəti mövcud deyil. Şifrə gücü tələbi yoxdur. Expiry olmur."},
+  {m:"Rol İdarəetməsi (RBAC)",f:"Avtomatik Rol Ötürməsi",r:"Medium",n:"Yeni əməkdaş üçün hər şey sıfırdan vendor tərəfindən assign edilir. Daxili admin edə bilmir."},
+  {m:"Rol İdarəetməsi (RBAC)",f:"Rol Şablonları",r:"Medium",n:"Standart rol şablonları mövcud deyil. Hər dəfə əl ilə konfiqurasiya tələb olunur."},
+  {m:"Rol İdarəetməsi (RBAC)",f:"Giriş Nəzarəti",r:"High",n:"Payroll komandası yalnız maaşları görə bilir, lakin bəzi hallarda başqa məlumatlar da görünür. Rol separasiyası tam deyil."},
+  {m:"Təşkilat Strukturu",f:"Canlı Orqaniqram",r:"Low",n:"Vizual org chart mövcud deyil. Ayrıca alət istifadə edilir."},
+  {m:"Təşkilat Strukturu",f:"Tabelilik Münasibətləri",r:"Medium",n:"Tabelilik zənciri manual idarə olunur. Avtomatik məntiqə bağlı deyil."},
+  {m:"Təşkilat Strukturu",f:"Matriks Struktur",r:"Low",n:"Matrix/çoxsaylı tabelilik strukturu mövcud deyil."},
+  {m:"Təşkilat Strukturu",f:"Xərc Mərkəzləri İnteqrasiyası",r:"High",n:"Xərc mərkəzləri məntiqi mövcuddur, lakin mühasibat sistemi (1C ERP) ilə inteqrasiya qurulmayıb."},
+  {m:"Vəzifə İdarəetməsi",f:"Ştat Cədvəli",r:"High",n:"Mövcuddur, lakin ştat sayları düzgün izlənilmir. Vəzifə adları ilə masterfile arasında uyğunsuzluqlar var."},
+  {m:"Vəzifə İdarəetməsi",f:"Vakansiya İdarəsi",r:"Medium",n:"ATS inteqrasiyası olmadığından vakansiya axını kəsilib. İki sistem arasında manual keçid tələb olunur."},
+  {m:"Vəzifə İdarəetməsi",f:"Kütləvi Köçürmə",r:"Medium",n:"Mümkündür, lakin sistemin qeyri-stabil işləməsinə görə tətbiq edilmir."},
+  {m:"İşə Qəbul (ATS)",f:"ATS Modulu",r:"High",n:"HRIS-də ATS modulu yoxdur. Handflow (rus sistemi) istifadə edilir. HRIS ilə inteqrasiya yoxdur."},
+  {m:"İşə Qəbul (ATS)",f:"CV Parsing",r:"Low",n:"CV parsing mövcud deyil. Manual məlumat daxil etmə tələb olunur."},
+  {m:"İşə Qəbul (ATS)",f:"Namizəd İzləmə Sistemi",r:"Medium",n:"Handflow üzərindən aparılır. HRIS ilə sinxronizasiya yoxdur."},
+  {m:"İşə Qəbul (ATS)",f:"Structured İntervyu Aləti",r:"Medium",n:"Kompetensiyalar üzrə qiymətləndirmə üçün sistem yoxdur. Şifahi olaraq aparılır."},
+  {m:"İşə Qəbul (ATS)",f:"Job Offer Generasiyası",r:"Low",n:"Handflow + Jira inteqrasiyası var. Lakin proses Jira→manual çap→e-mail şəklindədir."},
+  {m:"İşə Qəbul (ATS)",f:"Background Check",r:"Medium",n:"Avtomatik background check məntiqi yoxdur. Ehtiyac olanda ƏMAS-da manual sorğu edilir."},
+  {m:"İşə Qəbul (ATS)",f:"İşə Qəbul Analitikası",r:"Low",n:"Time-to-hire, cost-per-hire göstəriciləri avtomatik hesablanmır. Jira data-larından manual hesablana bilər."},
+  {m:"İşə Qəbul (ATS)",f:"FİN Yoxlama Avtomatizasiyası",r:"High",n:"Avtomatik FİN əsaslı dövlət yoxlaması sistemi yoxdur. Manual ƏMAS sorğusu aparılır."},
+  {m:"İşə Başlama (Onboarding)",f:"Onboarding Checklist (Jira)",r:"Low",n:"Jira üzərindən aparılır, kifayət qədər effektivdir. Lakin məlumat doldurma manuldur."},
+  {m:"İşə Başlama (Onboarding)",f:"Müqavilə Şablonları",r:"High",n:"Şablon imkanı var lakin vendor interfeysdə konfiqurasiya etməyib. Hər şablonu vendor yaradır — asılılıq."},
+  {m:"İşə Başlama (Onboarding)",f:"Buddy/Mentor Sistemi",r:"Low",n:"Sistem üzərindən mentor/buddy təyin etmə məntiqi yoxdur."},
+  {m:"İşçi Məlumatları",f:"360° Məlumat Görünüşü",r:"Medium",n:"Bütün məlumatları vahid pəncərədə görmək mümkün deyil. Məzuniyyət, davamiyyət, sənəd məlumatları pərakəndədir."},
+  {m:"İşçi Məlumatları",f:"Şəxsi Kabinet (Self-Service)",r:"Medium",n:"Self-service portal üzərində işlər davam edir. Tam funksional deyil."},
+  {m:"İşçi Məlumatları",f:"Ailə/Asılılıq Məlumatları",r:"High",n:"Qurulub, lakin bəzi məzuniyyət hesablamaları Rusiya qanunvericiliyi ilə aparılır. Lokal uyğunlaşma lazımdır."},
+  {m:"İşçi Məlumatları",f:"Sənəd/Sertifikat Arxivi",r:"Low",n:"Sənədlər HRM-də deyil, Shared Drive qovluqlarında saxlanılır. İzlənmə çətindir."},
+  {m:"Sənəd İdarəsi",f:"Elektron İmza İnteqrasiyası",r:"Medium",n:"ASAN İmza müzakirə edilib, lakin saxlanılıb. ƏMAS üzrə telefon vasitəsilə təsdiq istifadə edilir."},
+  {m:"Sənəd İdarəsi",f:"Arayış Generasiyası",r:"Low",n:"Avtomatik arayış generasiyası modulu yoxdur. Manual hazırlanır."},
+  {m:"Sənəd İdarəsi",f:"Sənəd Şablonları",r:"Medium",n:"Şablonlar brendinqə uyğun deyil. Dəyişiklik üçün vendora müraciət lazımdır — asılılıq."},
+  {m:"Sənəd İdarəsi",f:"Sənəd Axtarışı",r:"Medium",n:"Tam mətn axtarışı mövcud deyil. Kateqoriya filtri ilə işləyir."},
+  {m:"Sənəd İdarəsi",f:"Versiya İdarəsi",r:"Low",n:"Aktiv/köhnə sənəd versiyaları müəyyənləşdirilə bilmir."},
+  {m:"İş Vaxtı və Davamiyyət",f:"Biometrik/Fiziki İnteqrasiya",r:"High",n:"Turniket/biometrik giriş sistemi ilə inteqrasiya yoxdur. Absenteeism izlənilmir."},
+  {m:"İş Vaxtı və Davamiyyət",f:"AZ Qanunvericiliyinə Uyğunluq",r:"Critical",n:"Sistem Rusiya qanunvericiliyi ilə işləyir. Lokalizasiya çox aşağıdır. AZ ƏM tələbləri pozulur."},
+  {m:"İş Vaxtı və Davamiyyət",f:"Gecikmə/Qeybuluq Qeydiyyatı",r:"Medium",n:"Davamiyyət izləmə prosesi sistem üzərindən aparılmır. Manual və ya izlənilmir."},
+  {m:"İş Vaxtı və Davamiyyət",f:"Fərqli İş Qrafikləri",r:"Medium",n:"Fərqli qrafiklər daxil edilə bilir, lakin Timesheet çox məhduddur."},
+  {m:"Növbəli İş",f:"Növbə Cədvəli (AZ ƏM)",r:"High",n:"Timesheet sadəcə məhdud məlumat göstərir. Növbə hesablaması üçün manual baxış tələb olunur."},
+  {m:"Növbəli İş",f:"Gecə İşi Əmsalı (AZ ƏM m.163)",r:"High",n:"İnteqrasiya olmadığından sistem gecə əmsalını avtomatik hesablaya bilmir. Qanuni tələb pozulur."},
+  {m:"Növbəli İş",f:"Növbə Dəyişikliyi (Self-Service)",r:"Low",n:"Self-service portal hazır olmadığından mövcud deyil."},
+  {m:"Məzuniyyət İdarəsi",f:"AZ ƏM Balans Hesablaması",r:"Critical",n:"Rusiya qanunvericiliyi ilə bəzi məzuniyyətlər hesablanır. Sistem çox pis işlədiyindən ayrıca HRSS sistemi alınıb — inteqrasiya yoxdur."},
+  {m:"Məzuniyyət İdarəsi",f:"Məzuniyyət Balansı Dəqiqliyi",r:"High",n:"Məzuniyyət balansları səhv hesablanır. Əməkdaşlar düzgün göstərici görə bilmir."},
+  {m:"Məzuniyyət İdarəsi",f:"HRSS ↔ 1C İnteqrasiyası",r:"Critical",n:"Məzuniyyət üçün alınan HRSS sistemi ilə 1C HRIS arasında heç bir inteqrasiya yoxdur. Datalar pərakəndədir."},
+  {m:"Məzuniyyət İdarəsi",f:"Məzuniyyət Planlaşdırması",r:"Medium",n:"İllik məzuniyyət cədvəli planlaması mövcud deyil."},
+  {m:"Məzuniyyət İdarəsi",f:"Kəsişmə Yoxlaması",r:"Medium",n:"Eyni tarixdə eyni şöbədən çox əməkdaşın məzuniyyətini bloklamaq üçün məntiq yoxdur."},
+  {m:"Məzuniyyət İdarəsi",f:"Xəstəlik Məzuniyyəti Hesablaması",r:"High",n:"Xəstəlik vərəqəsi qeydiyyat modulu var, lakin hesablama dəqiqliyi analiz edilməyib."},
+  {m:"Məzuniyyət İdarəsi",f:"Təqvim İnteqrasiyası",r:"Low",n:"Outlook/Google Calendar sinxronizasiyası mövcud deyil."},
+  {m:"Ezamiyyət",f:"AZ ƏM Ezamiyyət Normaları",r:"High",n:"Ezamiyyət üçün ayrıca funksionallıq mövcud deyil. AZ ƏM normaları sistem tərəfindən hesablanmır."},
+  {m:"Ezamiyyət",f:"Xərc Hesabatı (Expense Report)",r:"Medium",n:"Ezamiyyətdən qayıdandan sonra xərc hesabatı sistemi yoxdur. Sənədlər mövcud deyil."},
+  {m:"Ezamiyyət",f:"Xarici Ezamiyyət Proseduru",r:"Low",n:"Ayrıca funksionallıq nəzərdə tutulmayıb."},
+  {m:"Əmək Haqqı (Payroll)",f:"Sistemdən İstifadə",r:"Critical",n:"Maaş hesablanması HRIS sistemindən deyil, Excel cədvəlləri üzərindən aparılır. Sistemə etibar edilmir."},
+  {m:"Əmək Haqqı (Payroll)",f:"Bank İnteqrasiyası",r:"Critical",n:"Bank ilə birbaşa inteqrasiya mövcud deyil. Məlumatlar Excel faylda yüklənilir sistemə — manuel proses."},
+  {m:"Əmək Haqqı (Payroll)",f:"Kütləvi Artım (Bulk Raise)",r:"High",n:"Kütləvi əmək haqqı artımı üçün funksionallıq yoxdur. Hər əməkdaş üçün ayrıca edilir."},
+  {m:"Əmək Haqqı (Payroll)",f:"Keçmiş Dövrə Düzəliş",r:"High",n:"İmkan var, lakin sistem etibar edilmədiyindən Excel istifadə edilir."},
+  {m:"Əmək Haqqı (Payroll)",f:"Pay Slip Generasiyası",r:"Low",n:"Avtomatik pay slip məntiqi qurulmayıb. Hazırda Excel üzərindən manual verilir."},
+  {m:"Əmək Haqqı (Payroll)",f:"Vergi Hesablama (AZ)",r:"Critical",n:"Hesablama məntiqi mövcuddur. Aylıq kalkulyasiyaya əsasən vergi hesabatları təqdim edilir. Lakin tam validation aparılmayıb."},
+  {m:"Əmək Haqqı (Payroll)",f:"Maaş Simulyasiyası",r:"Low",n:"Simulyasiya imkanı mövcud deyil. Proqnoz üçün Excel istifadə edilir."},
+  {m:"Kompensasiya və Benefitlər",f:"Maaş Benchmarking",r:"Low",n:"Bazar müqayisəsi üçün daxili alət mövcud deyil."},
+  {m:"Kompensasiya və Benefitlər",f:"Bonus/Mükafat Sistemi",r:"Medium",n:"Performans-əsaslı bonus məntiqi sistem üzərindən idarə edilmir. iSpring 360 nəticəsi manual ötürülür."},
+  {m:"Kompensasiya və Benefitlər",f:"Benefit İdarəetmə Modulu",r:"Medium",n:"Sosial paket, tibbi sığorta, idman abonəliyi kimi benefitlər sistem üzərindən idarə edilmir."},
+  {m:"Kompensasiya və Benefitlər",f:"Əlavə Ödəniş Növləri",r:"Medium",n:"Müxtəlif əlavə ödəniş növlərinin idarəsi məhduddur."},
+  {m:"İntizam Tədbirləri",f:"Xəbərdarlıq Əmri (AZ ƏM)",r:"Medium",n:"İntizam modulu tam nəzərə alınmayıb. Bütün proses mail + kağız əmr üzərindədir."},
+  {m:"İntizam Tədbirləri",f:"Pozuntu Tarixçəsi",r:"Medium",n:"Əmrlər sisteme tam daxil edilmədiyindən tarixçə hesabatı mümkün deyil."},
+  {m:"İntizam Tədbirləri",f:"Avtomatik Ləğvetmə (AZ ƏM m.184)",r:"Low",n:"Sistem müddəti keçmiş intizam cəzasını avtomatik ləğv etmir."},
+  {m:"İşdən Çıxma (Offboarding)",f:"Son Haqq-Hesab (AZ ƏM)",r:"Critical",n:"Məzuniyyət balansı yanlış olduğundan son haqq-hesabda sistem istifadə edilmir. Tam manual aparılır."},
+  {m:"İşdən Çıxma (Offboarding)",f:"Exit Müsahibə Modulu",r:"Low",n:"HRIS modulu yoxdur. Microsoft Forms istifadə edilir. Nəticələr sistemdə analiz edilmir."},
+  {m:"İşdən Çıxma (Offboarding)",f:"Təhvil-Təslim Prosesi",r:"Medium",n:"Dövriyyə sənədi kağız üzərindədir. Sistemdə izlənilmir."},
+  {m:"İşçi Münasibətləri",f:"Şikayət İdarəetmə Sistemi",r:"Medium",n:"Self-service portal hazır olmadığından şikayət qeydiyyatı sistemi yoxdur."},
+  {m:"İşçi Münasibətləri",f:"Araşdırma Prosesi İdarəsi",r:"Medium",n:"İşçi münasibətləri araşdırma axını sistem tərəfindən dəstəklənmir."},
+  {m:"İşçi Münasibətləri",f:"İşçi Sorğu (Survey) Analizi",r:"Low",n:"iSpring üzərindən pulse surveylər var. HRIS ilə sinxronizasiya yoxdur."},
+  {m:"Analitika və Hesabatlar",f:"HR Dashboard",r:"High",n:"Real-time HR dashboard mövcud deyil. Hesabatlar çox yavaş açılır (2-3 dəqiqə) və ya timeout verir."},
+  {m:"Analitika və Hesabatlar",f:"Turnover & Retention",r:"Medium",n:"Turnover hesabatı Excel üzərindən manual hazırlanır. Sistem avtomatik hesablamır."},
+  {m:"Analitika və Hesabatlar",f:"Headcount Analitikası",r:"Medium",n:"Headcount masterfile mövcuddur, lakin ştat sayları ilə uyğunsuzluqlar var."},
+  {m:"Analitika və Hesabatlar",f:"Əmək Haqqı Xərclər Analizi",r:"High",n:"İmkan var lakin konfiqurasiya edilməyib. Excel üzərindən aparılır."},
+  {m:"Analitika və Hesabatlar",f:"AI / Proqnoz Analizi",r:"Low",n:"AI əsaslı proqnoz imkanı mövcud deyil."},
+  {m:"Dövlət Hesabatları [AZ]",f:"1-Əmək Hesabatı",r:"Critical",n:"Hesabat sistemi üzərindən qurula bilər, lakin konfigurasiya edilməyib. Manual aparılır."},
+  {m:"Dövlət Hesabatları [AZ]",f:"4-Əmək Hesabatı",r:"Critical",n:"Hesabat sistemi üzərindən qurula bilər, lakin konfigurasiya edilməyib. Manual aparılır."},
+  {m:"Dövlət Hesabatları [AZ]",f:"DSMF (DOST) Hesabatı",r:"Critical",n:"Excel cədvəllərdən hazırlanaraq işlənilir. Avtomatik generasiya yoxdur."},
+  {m:"Dövlət Hesabatları [AZ]",f:"Statistika Komitəsi Hesabatı",r:"Low",n:"Hər ayın 15-nə qədər elektron formada sayta manual daxil edilir."},
+  {m:"Dövlət Hesabatları [AZ]",f:"Power BI / BI İnteqrasiya",r:"Low",n:"Databaza strukturu qarışıqdır. View-larla mümkündür, lakin qurulmayıb."},
+  {m:"İnteqrasiyalar",f:"ƏMAS / SİMA İnteqrasiyası",r:"Critical",n:"Heç bir inteqrasiya mövcud deyil. ƏMAS qapalı sistemdir. RPA texnologiyası ilə həll edilə bilər."},
+  {m:"İnteqrasiyalar",f:"Bank Sistemi İnteqrasiyası",r:"Critical",n:"İnternet Banking ilə birbaşa inteqrasiya yoxdur. Maaş köçürməsi Excel faylı yükləmə ilə aparılır."},
+  {m:"İnteqrasiyalar",f:"1C ERP (Mühasibat) İnteqrasiyası",r:"Critical",n:"1C olduğu üçün texniki inteqrasiya imkanı var, lakin qurulmayıb. Hesabatlar Excel üzərindən ötürülür."},
+  {m:"İnteqrasiyalar",f:"Elektron İmza (ASAN İmza)",r:"High",n:"ASAN İmza müzakirə edilib, saxlanılıb. Daxili komanda prosesin effektivliyinə inanmır."},
+  {m:"İnteqrasiyalar",f:"LMS / iSpring İnteqrasiyası",r:"Medium",n:"iSpring ilə API inteqrasiyası yoxdur. Performance nəticələri manual köçürülür."},
+  {m:"İnteqrasiyalar",f:"DSMF (DOST) Sistemi",r:"Medium",n:"Avtomatik inteqrasiya yoxdur. Məlumatlar Excel-dən hazırlanaraq işlənilir."},
+  {m:"İnteqrasiyalar",f:"E-poçt / Bildiriş Sistemi",r:"Low",n:"Avtomatik bildiriş sistemi məhduddur. Bəzi proseslərdə mail göndərilir."},
+  {m:"İnteqrasiyalar",f:"Giriş-Çıxış / Turniket Sistemi",r:"Medium",n:"Turniket məlumatları HRIS-ə ötürülmür. Giriş-çıxış analizi edilmir."},
+];
+
+/* ===== GOV DATA (HRIS-only) ===== */
+const govData=[
+  {cat:"HRIS Sisteminin Funksionallığı",items:[
+    {s:"Sistem tam istifadəsi",st:"f",sl:"İstifadə edilmir",n:"1C sistemi 2024-dən var, lakin tam təhvil verilməyib. Faktiki olaraq sistemdən istifadə edilmir — proseslər Excel-də aparılır."},
+    {s:"Payroll modulu",st:"f",sl:"Excel ilə",n:"Əmək haqqı hesablanması Excel üzərindən aparılır. HRM sistem zəif və səhv işləyir — etibar edilmir."},
+    {s:"Məzuniyyət modulu (HRSS)",st:"f",sl:"HRSS ilə",n:"Məzuniyyət modulu adekvat işləmir. Ayrıca HRSS sistemi alınıb, 1C ilə inteqrasiya yoxdur."},
+    {s:"İş vaxtı modulu",st:"f",sl:"İstifadə edilmir",n:"Davamiyyət və iş vaxtı prosesi daxili HRM sistemi üzərindən aparılmır."},
+    {s:"Məlumat dəqiqliyi",st:"f",sl:"Uyğunsuz",n:"Cari vəziyyətlə daxili HRM sistemi üst-üstə düşmür. Məlumatlar aktual saxlanılmır."},
+    {s:"Sistem sürəti",st:"f",sl:"2-3 dəq gözləmə",n:"Hesabatlara girişdə 2-3 dəqiqə gözləmə. Çox vaxt timeout xətası ilə bitir."},
+    {s:"Məlumat yedəkləməsi (Backup)",st:"f",sl:"Qüsurlu",n:"Backup məntiqi yanlışdır. Restore zamanı lazımsız datalar qayıdır, bəzən məlumatlar tamam itir."},
+    {s:"Data migration (köçürmə)",st:"w",sl:"Manual aparılıb",n:"Excel-dən 1C-yə manuel, bir-bir köçürülüb. Hansı dataların düşmədiyini müəyyənləşdirmək mümkün deyil."},
+    {s:"Sistem auditi",st:"f",sl:"Aparılmır",n:"Sistem tam funksional olmadığından daxili data audit aparılmır."},
+  ]},
+  {cat:"Sistem Təhlükəsizliyi",items:[
+    {s:"Test/prod mühit ayrılığı",st:"f",sl:"Yoxdur",n:"Vendor bütün sazlamaları birbaşa prodaksiya mühitdə aparır. Əməkdaşların fərdi məlumatlarına vendor girişi var."},
+    {s:"Məlumat maskalanması",st:"f",sl:"Yoxdur",n:"Nə proqram, nə databaza səviyyəsindən maskalanma/şifrələmə yoxdur. Maaş, FİN məlumatları açıqdır."},
+    {s:"İkili autentifikasiya (2FA)",st:"f",sl:"Yoxdur",n:"İkili autentifikasiya mövcud deyil. Şifrə expiry yoxdur."},
+    {s:"Rol idarəetməsi (RBAC)",st:"w",sl:"Vendor asılılığı",n:"Rolların assign edilməsi vendor tərəfindən aparılır. Daxili admin edə bilmir."},
+    {s:"Audit log / jurnal",st:"w",sl:"Qeyri-informativ",n:"Loqlar informativ deyil. Kim nəyi dəyişdirdi izlənilə bilmir."},
+    {s:"GDPR uyğunluğu",st:"f",sl:"Uyğun deyil",n:"Maskalanma/şifrələmə olmadığından ciddi GDPR pozuntusudur."},
+  ]},
+  {cat:"HRIS İnteqrasiya Vəziyyəti",items:[
+    {s:"ƏMAS / SİMA inteqrasiyası",st:"f",sl:"Yoxdur",n:"Heç bir inteqrasiya yoxdur. Manual telefon təsdiqi istifadə edilir. RPA ilə həll edilə bilər."},
+    {s:"Bank sistemi inteqrasiyası",st:"f",sl:"Yoxdur",n:"İnternet Banking ilə birbaşa inteqrasiya yoxdur. Excel ilə manual köçürmə."},
+    {s:"1C ERP inteqrasiyası",st:"f",sl:"Qurulmayıb",n:"1C olduğu üçün texniki imkan var, lakin qurulmayıb. Hesabatlar Excel-dən ötürülür."},
+    {s:"iSpring (LMS/PM) inteqrasiyası",st:"f",sl:"Yoxdur",n:"iSpring ilə API inteqrasiyası yoxdur. Performance nəticələri manual köçürülür."},
+    {s:"Elektron imza inteqrasiyası",st:"w",sl:"Məhdud",n:"ASAN İmza saxlanılıb. ƏMAS üzrə telefon təsdiqi istifadə edilir."},
+    {s:"DSMF (DOST) inteqrasiyası",st:"f",sl:"Yoxdur",n:"Avtomatik inteqrasiya yoxdur. Məlumatlar Excel-dən hazırlanaraq işlənilir."},
+    {s:"Turniket/giriş sistemi",st:"f",sl:"Yoxdur",n:"Turniket məlumatları HRIS-ə ötürülmür. Absenteeism izlənilmir."},
+  ]},
+  {cat:"AZ Qanunvericiliyinə Uyğunluq",items:[
+    {s:"AZ Əmək Məcəlləsi lokalizasiyası",st:"f",sl:"Uyğun deyil",n:"Sistem Rusiya ƏM normaları ilə işləyir. Məzuniyyət balansı, gecə əmsalı, ezamiyyət normaları — hamısı düzgün deyil."},
+    {s:"1-Əmək hesabatı konfiqurasiyası",st:"f",sl:"Qurulmayıb",n:"Sistem üzərindən qurula bilər lakin edilməyib. Hazırda manual Excel ilə aparılır."},
+    {s:"4-Əmək hesabatı konfiqurasiyası",st:"f",sl:"Qurulmayıb",n:"Sistem üzərindən qurula bilər lakin edilməyib."},
+    {s:"DSMF hesabat avtomatizasiyası",st:"f",sl:"Manual Excel",n:"Excel cədvəllərdən hazırlanaraq işlənilir. Sistem üzərindən konfiqurasiya edilməyib."},
+    {s:"Gecə iş əmsalı (ƏM m.163)",st:"f",sl:"Hesablanmır",n:"Sistem gecə əmsalını avtomatik hesablaya bilmir. Manual tabellər əsasında aparılır."},
+  ]},
+];
+
+function renderGov(){
+  const cont=document.getElementById('gov-content');
+  govData.forEach(cat=>{
+    const d=document.createElement('div');
+    d.className='gov-cat';
+    d.innerHTML=`
+      <div class="gov-cat-head" onclick="toggleGov(this)">
+        <span>${cat.cat}</span>
+        <span class="badge b-M">${cat.items.length} maddə</span>
+        <span class="gov-cat-arrow">▶</span>
+      </div>
+      <div class="gov-items">
+        <div class="gov-head-row"><span>Maddə</span><span>Status</span><span>Qeyd</span></div>
+        ${cat.items.map(i=>`
+          <div class="gov-item">
+            <div class="gov-item-sub">${i.s}</div>
+            <div><span class="sts-${i.st}">${i.st==='ok'?'✓ ':i.st==='w'?'⚠ ':'✗ '}${i.sl}</span></div>
+            <div class="gov-item-note">${i.n}</div>
+          </div>`).join('')}
+      </div>`;
+    cont.appendChild(d);
+  });
+}
+renderGov();
+
+function toggleGov(h){
+  h.classList.toggle('open');
+  h.nextElementSibling.style.display=h.classList.contains('open')?'block':'none';
+}
+
+/* ===== MODULES ===== */
+const mods={};
+const rc={Critical:'var(--C)',High:'var(--H)',Medium:'var(--M)',Low:'var(--L)'};
+auditData.forEach(d=>{
+  if(!mods[d.m])mods[d.m]={Critical:0,High:0,Medium:0,Low:0};
+  mods[d.m][d.r]++;
+});
+
+const mg=document.getElementById('mod-grid');
+Object.entries(mods).forEach(([name,c])=>{
+  const tot=c.Critical+c.High+c.Medium+c.Low;
+  const top=c.Critical>0?'C':c.High>0?'H':c.Medium>0?'M':'L';
+  const topLabel=c.Critical>0?'Critical':c.High>0?'High':c.Medium>0?'Medium':'Low';
+  const card=document.createElement('div');
+  card.className='mc fade-up';
+  card.innerHTML=`
+    <div class="mc-head">
+      <div class="mc-name">${name}</div>
+      <span class="badge b-${top}">${topLabel}</span>
+    </div>
+    <div class="mc-bars">
+      ${['Critical','High','Medium','Low'].map(r=>c[r]>0?`
+        <div class="mc-br">
+          <span class="mc-bn">${r}</span>
+          <div class="mc-bt"><div class="mc-bf" style="width:${c[r]/tot*100}%;background:${rc[r]}"></div></div>
+          <span class="mc-bv">${c[r]}</span>
+        </div>`:''  ).join('')}
+    </div>
+    <div class="mc-tot">${tot} tapıntı</div>`;
+  mg.appendChild(card);
+});
+
+/* ===== DETAIL TABLES ===== */
+const dt=document.getElementById('detail-tables');
+Object.entries(mods).forEach(([mn])=>{
+  const items=auditData.filter(d=>d.m===mn);
+  const sec=document.createElement('div');
+  sec.className='dmod fade-up';
+  const bid='d_'+mn.replace(/[\s()\/\[\].]/g,'_');
+  sec.innerHTML=`
+    <div class="dmod-head" onclick="toggleDet(this,'${bid}')">
+      <span>${mn}</span>
+      <span class="dmod-cnt">${items.length} tapıntı</span>
+      <span class="dmod-arr">▼</span>
+    </div>
+    <div id="${bid}">
+      <table class="ftbl">
+        <thead><tr>
+          <th style="width:210px">Funksiya</th>
+          <th style="width:86px">Risk</th>
+          <th>Audit Qeydi</th>
+        </tr></thead>
+        <tbody>
+          ${items.map(i=>`
+            <tr>
+              <td class="fn-func">${i.f}</td>
+              <td><span class="rp ${i.r}">${i.r}</span></td>
+              <td class="fn-note">${i.n}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  dt.appendChild(sec);
+});
+
+function toggleDet(h,id){
+  const b=document.getElementById(id);
+  const a=h.querySelector('.dmod-arr');
+  h.classList.toggle('collapsed');
+  b.style.display=h.classList.contains('collapsed')?'none':'';
+}
+
+/* ===== CHARTS ===== */
+let pieInst,barInst;
+function buildCharts(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const tc=isDark?'rgba(255,255,255,0.4)':'rgba(0,0,0,0.45)';
+  const gc=isDark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.07)';
+
+  if(pieInst)pieInst.destroy();
+  if(barInst)barInst.destroy();
+
+  pieInst=new Chart(document.getElementById('pieChart'),{
+    type:'doughnut',
+    data:{
+      labels:['Kritik 13','Yüksək 22','Orta 36','Aşağı 31'],
+      datasets:[{
+        data:[13,22,36,31],
+        backgroundColor:['#E8001D','#FF4500','#FF9500','#FFD700'],
+        borderWidth:0,hoverOffset:10,
+      }]
+    },
+    options:{
+      cutout:'62%',
+      plugins:{
+        legend:{
+          position:'bottom',
+          labels:{color:tc,font:{family:'Montserrat',size:10,weight:'700'},padding:14,boxWidth:11}
+        }
+      },
+      animation:{duration:1400,easing:'easeInOutQuart'}
+    }
+  });
+
+  const modNames=Object.keys(mods);
+  const shortNames=modNames.map(m=>m.length>18?m.substring(0,16)+'…':m);
+  barInst=new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{
+      labels:shortNames,
+      datasets:[
+        {label:'Kritik',data:Object.values(mods).map(m=>m.Critical),backgroundColor:'#E8001D',borderRadius:0,borderSkipped:false},
+        {label:'Yüksək',data:Object.values(mods).map(m=>m.High),backgroundColor:'#FF5200',borderRadius:0,borderSkipped:false},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      indexAxis:'y',
+      scales:{
+        x:{
+          stacked:true,
+          ticks:{color:tc,font:{family:'Montserrat',size:9,weight:'600'}},
+          grid:{color:gc},
+          border:{display:false},
+          min:0,max:8,
+        },
+        y:{
+          stacked:true,
+          ticks:{color:tc,font:{family:'Montserrat',size:9.5,weight:'700'},padding:6},
+          grid:{display:false},
+          border:{display:false},
+        }
+      },
+      plugins:{
+        legend:{
+          position:'top',
+          labels:{color:tc,font:{family:'Montserrat',size:10,weight:'700'},padding:16,boxWidth:12}
+        },
+        tooltip:{
+          backgroundColor:isDark?'rgba(20,20,25,0.95)':'rgba(255,255,255,0.95)',
+          titleColor:isDark?'#F2EDE6':'#1A1510',
+          bodyColor:isDark?'#9990a0':'#6B6258',
+          borderColor:isDark?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
+          borderWidth:1,
+          titleFont:{family:'Montserrat',weight:'800'},
+          bodyFont:{family:'Montserrat'},
+          padding:12,cornerRadius:0,
+        }
+      },
+      animation:{duration:1200,easing:'easeOutQuart'}
+    }
+  });
+}
+buildCharts();
+
+function updateCharts(){buildCharts();}
+
+/* ===== SCROLL & INTERSECTION ===== */
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog').style.width=(window.scrollY/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});
+},{threshold:0.07});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+/* ===== INIT ===== */
+setTimeout(()=>{
+  document.querySelectorAll('.sc-bar-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  animateSpeedometer();
+},700);
+</script>
+</body>
+</html>
