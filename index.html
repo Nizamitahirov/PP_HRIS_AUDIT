@@ -754,11 +754,11 @@ footer{
           <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">1C ilə inteqrasiya yox</text>
         </g>
 
-        <!-- Handflow -->
+        <!-- Huntflow -->
         <g transform="translate(150,80)">
           <rect x="-65" y="-36" width="130" height="72" rx="3" fill="url(#hfG)"/>
-          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">Handflow</text>
-          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">ATS (Rus Sistem)</text>
+          <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="13">Huntflow</text>
+          <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">ATS</text>
           <text x="0" y="26" text-anchor="middle" fill="#FFCC88" font-size="9">HRIS ilə inteqrasiya yox</text>
         </g>
 
@@ -837,7 +837,7 @@ footer{
         </g>
       </svg>
     </div>
-    <div class="diag-note"><strong style="color:var(--red)">Cari vəziyyət:</strong> Excel bütün sistemlər arasında qeyri-rəsmi "inteqrasiya mərkəzi" rolunu oynayır. 1C HRIS tam istifadə edilmir, Rusiya qanunvericiliyi ilə işləyir. HRSS, Handflow, iSpring, Jira arasında real inteqrasiya yoxdur. ƏMAS manualdır, bank inteqrasiyası mövcud deyil.</div>
+    <div class="diag-note"><strong style="color:var(--red)">Cari vəziyyət:</strong> Excel bütün sistemlər arasında qeyri-rəsmi "inteqrasiya mərkəzi" rolunu oynayır. 1C HRIS tam istifadə edilmir, Rusiya qanunvericiliyi ilə işləyir. HRSS, Huntflow, iSpring, Jira arasında real inteqrasiya yoxdur. ƏMAS manualdır, bank inteqrasiyası mövcud deyil.</div>
   </div>
 
   <div class="dpanel" id="dp-best">
@@ -868,7 +868,7 @@ footer{
         <g transform="translate(175,95)">
           <rect x="-62" y="-34" width="124" height="68" rx="4" fill="#1a5f8a"/>
           <text x="0" y="-8" text-anchor="middle" fill="white" font-weight="800" font-size="12">ATS Sistemi</text>
-          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Handflow/Müasir</text>
+          <text x="0" y="9" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="9.5">Huntflow/Müasir</text>
           <text x="0" y="25" text-anchor="middle" fill="#9dd5ff" font-size="9">API inteqrasiya</text>
         </g>
         <line x1="233" y1="120" x2="415" y2="222" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ag)"/>
@@ -1111,7 +1111,7 @@ Müqayisə üçün qeyd: çəkisiz sadə ortalama metodologiyası ilə eyni data
         <li>Vəzifə/Xərc mərkəzləri məntiqi qurulub — ERP inteqrasiyası üçün texniki əsas var</li>
         <li>VPN tətbiq edilib — minimum şəbəkə təhlükəsizliyi mövcuddur</li>
         <li>Onboarding Jira ilə qismən işləkdir, effektivdir</li>
-        <li>Handflow + Jira ilə işə qəbul axını fəaliyyət göstərir</li>
+        <li>Huntflow + Jira ilə işə qəbul axını fəaliyyət göstərir</li>
         <li>Xəstəlik vərəqəsi qeydiyyat modulu mövcuddur</li>
         <li>Audit log texniki olaraq mövcuddur (məzmunca zəif olsa da)</li>
       </ul>
@@ -1148,7 +1148,7 @@ Müqayisə üçün qeyd: çəkisiz sadə ortalama metodologiyası ilə eyni data
         <li>AZ ƏM lokalizasiyası ilə gecə əmsalı, məzuniyyət balansı, ezamiyyət normaları düzgün hesablanacaq</li>
         <li>2FA + SSO tətbiqi ilə minimal investisiya ilə kritik təhlükəsizlik boşluğu bağlana bilər</li>
         <li>Vendor müqaviləsinin yenilənməsi ilə SLA, test mühiti, daxili admin hüquqları tənzimlənə bilər</li>
-        <li>Power BI inteqrasiyası ilə real-time HR dashboard qurulabilir</li>
+        <li>Power BI inteqrasiyası ilə real-time HR dashboard qurula bilər</li>
         <li>iSpring inteqrasiyası ilə performans nəticələri avtomatik köçürülə bilər</li>
         <li>Self-service portalın tamamlanması ilə HR iş yükü əhəmiyyətli dərəcədə azalacaq</li>
       </ul>
@@ -1175,209 +1175,6 @@ Müqayisə üçün qeyd: çəkisiz sadə ortalama metodologiyası ilə eyni data
 </section>
 
 
-<!-- ===== 2. McKINSEY 7S ===== -->
-<hr class="div">
-<section id="mckinsey7s">
-  <div class="eyebrow">Strateji Analiz</div>
-  <div class="sec-title">McKinsey 7S Analizi</div>
-  <div class="hl-box" style="margin-bottom:44px;">
-    <p>HRIS sistemi üzrə McKinsey 7S analizi sistemin yeddi əsas elementi arasındakı uyğunsuzluqları ortaya qoyur. <strong>Ən kritik fərq</strong>: Sistem elementi (2/5) ilə Ortaq Dəyərlər elementi (4/5) arasında — şirkətin rəqəmsal transformasiya dəyərləri mövcud texnoloji infrastrukturla tam ziddiyyət təşkil edir.</p>
-  </div>
-
-  <div class="s7-radar-wrap fade-up">
-    <canvas id="radarChart" width="280" height="280"></canvas>
-    <div class="s7-legend">
-      <div class="s7-leg-item"><span class="s7-dot" style="background:rgba(232,0,29,0.9)"></span>Cari Vəziyyət</div>
-      <div class="s7-leg-item"><span class="s7-dot" style="background:rgba(255,150,0,0.5)"></span>Hədəf Vəziyyət</div>
-    </div>
-  </div>
-
-  <div class="s7-grid fade-up">
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">01</div>
-        <div class="s7-info">
-          <div class="s7-name">Strategiya <span class="s7-en">Strategy</span></div>
-          <div class="s7-type">Sərt Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#E8001D">2</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#E8001D" data-w="40"></div></div>
-      <p class="s7-desc">HRIS tətbiqi strateji planlaşdırma olmadan, Azərbaycan tələbləri tam müəyyən edilmədən həyata keçirilib. Sistem seçimi, vendor müqaviləsi, inteqrasiya xəritəsi əvvəlcədən hazırlanmamışdır. Cari vəziyyəti aradan qaldırmaq üçün yazılı HRIS strategiyası, inteqrasiya yol xəritəsi, vendor idarəetmə çərçivəsi tələb olunur.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-f">İnteqrasiya yol xəritəsi yoxdur</span>
-        <span class="s7-tag s7-f">Vendor SLA yoxdur</span>
-        <span class="s7-tag s7-f">Tətbiq planı yazılı deyil</span>
-        <span class="s7-tag s7-w">ƏMAS inteqrasiyası sifariş verilib</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">02</div>
-        <div class="s7-info">
-          <div class="s7-name">Struktur <span class="s7-en">Structure</span></div>
-          <div class="s7-type">Sərt Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#FF9500">3</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#FF9500" data-w="60"></div></div>
-      <p class="s7-desc">Sistem strukturu mövcuddur — modullar, vəzifə kateqoriyaları, xərc mərkəzləri məntiqi qurulub. Lakin modul separasiyası düzgün deyil: payroll, məzuniyyət, davamiyyət modulları faktiki olaraq deaktiv vəziyyətdədir. Rol strukturu vendora həvalə edilib, daxili admin mövcud deyildir.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-ok">Modul strukturu texniki olaraq var</span>
-        <span class="s7-tag s7-ok">Xərc mərkəzləri məntiqi mövcuddur</span>
-        <span class="s7-tag s7-f">Əsas modullar deaktiv vəziyyətdədir</span>
-        <span class="s7-tag s7-f">Rol strukturu vendor tərəfindədir</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">03</div>
-        <div class="s7-info">
-          <div class="s7-name">Sistem <span class="s7-en">Systems</span></div>
-          <div class="s7-type">Sərt Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#E8001D">1</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#E8001D" data-w="20"></div></div>
-      <p class="s7-desc">HRIS sisteminin özü audit tapıntılarının əsas mənbəyidir. Sistem 2024-dən mövcuddur, lakin heç bir əsas iş prosesi üzərindən aparılmır. Payroll Excel-dədir, məzuniyyət başqa sistemdədir, davamiyyət izlənilmir, inteqrasiyalar yoxdur. Sistem faktiki olaraq yalnız işçi qeydiyyatı bazasına çevrilmişdir.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-f">Payroll sistemdən çıxıb</span>
-        <span class="s7-tag s7-f">Məzuniyyət başqa sistemdədir</span>
-        <span class="s7-tag s7-f">6 kritik inteqrasiya yoxdur</span>
-        <span class="s7-tag s7-f">Backup qüsurludur</span>
-        <span class="s7-tag s7-f">Performans kritikdir</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">04</div>
-        <div class="s7-info">
-          <div class="s7-name">Ortaq Dəyərlər <span class="s7-en">Shared Values</span></div>
-          <div class="s7-type">Yumşaq Element · Mərkəz</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#22C55E">4</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#22C55E" data-w="80"></div></div>
-      <p class="s7-desc">Pasha Holding rəqəmsal transformasiya dəyərləri bəyan edilmişdir. Şirkətin texnoloji inkişaf istiqaməti aydındır. Lakin bu dəyərlər ilə cari HRIS vəziyyəti arasında dərin ziddiyyət mövcuddur — bəyan edilən rəqəmsal transformasiya məntiqi mövcud texnoloji infrastruktura tətbiq edilmir.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-ok">Rəqəmsal transformasiya dəyərləri mövcuddur</span>
-        <span class="s7-tag s7-ok">Holding texnoloji inkişaf istiqaməti aydındır</span>
-        <span class="s7-tag s7-w">Dəyərlər ilə sistem arasında dərin uçurum var</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">05</div>
-        <div class="s7-info">
-          <div class="s7-name">Bacarıqlar <span class="s7-en">Skills</span></div>
-          <div class="s7-type">Yumşaq Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#FF5200">2</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#FF5200" data-w="40"></div></div>
-      <p class="s7-desc">HRIS sistemini idarə etmək üçün daxili texniki bacarıq inkişaf etdirilməmişdir. Rol idarəetməsi, konfiqurasiya, şablon yaratma, sistem sazlama — hamısı vendor üzərindəndir. Bu bacarıq asılılığı həm xərc artırır, həm sistemi həssas edir, həm də daxili inkişafı blok edir.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-f">HRIS texniki idarəetmə bacarığı yoxdur</span>
-        <span class="s7-tag s7-f">Konfiqurasiya bacarığı vendordadır</span>
-        <span class="s7-tag s7-w">Əməliyyat istifadə bacarığı qismən var</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">06</div>
-        <div class="s7-info">
-          <div class="s7-name">Heyət <span class="s7-en">Staff</span></div>
-          <div class="s7-type">Yumşaq Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#FF9500">3</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#FF9500" data-w="60"></div></div>
-      <p class="s7-desc">HR heyəti sistemdən məcburi imtina edərək Excel-ə keçib — bu həm sistemin uğursuzluğunu, həm heyətin adaptasiya bacarığını göstərir. Sistem üzərindən düzgün dəstək və SLA mövcud deyil. Heyətin sistemi istifadə etmək üçün kifayət qədər bacarığı var.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-ok">Heyət Excel ilə prosesləri saxlaya bilir</span>
-        <span class="s7-tag s7-ok">Adaptasiya bacarığı mövcuddur</span>
-        <span class="s7-tag s7-w">HRIS-ə etibar itirilmişdir</span>
-        <span class="s7-tag s7-f">Texniki bacarıq inkişafı planlanmayıb</span>
-      </div>
-    </div>
-
-    <div class="s7-card">
-      <div class="s7-card-head">
-        <div class="s7-num">07</div>
-        <div class="s7-info">
-          <div class="s7-name">İdarəetmə Üslubu <span class="s7-en">Style</span></div>
-          <div class="s7-type">Yumşaq Element</div>
-        </div>
-        <div class="s7-score-wrap">
-          <div class="s7-score" style="color:#FF9500">3</div>
-          <div class="s7-score-lbl">/5</div>
-        </div>
-      </div>
-      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:#FF9500" data-w="60"></div></div>
-      <p class="s7-desc">HRIS idarəetmə üslubu vendor-centric qurulmuşdur — bütün qərarlar vendordan asılıdır. Daxili komandanın sistem üzərindəki nəzarəti minimaldır. Vendor müqavilə şərtləri, SLA, məsuliyyət bölgüsü tənzimlənməmişdir. Bu üslub dəyişdirilmədən texniki problemlər həll edilsə belə eyni vəziyyət yenidən yaranacaq.</p>
-      <div class="s7-findings">
-        <span class="s7-tag s7-f">Vendor-centric idarəetmə üslubu</span>
-        <span class="s7-tag s7-f">SLA, KPI, müqavilə şərtləri yoxdur</span>
-        <span class="s7-tag s7-w">Daxili nəzarət imkanı məhduddur</span>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="s7-alignment fade-up">
-    <div class="s7-align-title">7S Uyğunluq Matrisi — Kritik Uyğunsuzluqlar</div>
-    <div class="s7-align-grid">
-      <div class="s7-align-item s7-align-critical">
-        <div class="s7-align-pair">Dəyərlər ↔ Sistem</div>
-        <div class="s7-align-desc">Rəqəmsal transformasiya dəyərləri bəyan edilib, lakin HRIS sistemi bu dəyərlərin tam əksidir. Ən dərin uyğunsuzluqdur.</div>
-      </div>
-      <div class="s7-align-item s7-align-critical">
-        <div class="s7-align-pair">Strategiya ↔ Sistem</div>
-        <div class="s7-align-desc">Sistem strateji planlaşdırma olmadan seçilib və tətbiq edilib. İnteqrasiya xəritəsi, vendor SLA, lokalizasiya planı hazırlanmamışdır.</div>
-      </div>
-      <div class="s7-align-item s7-align-critical">
-        <div class="s7-align-pair">Sistem ↔ Bacarıqlar</div>
-        <div class="s7-align-desc">Daxili texniki bacarıq yoxdur. Hər konfiqurasiya, hər sazlama vendordan asılıdır. Bacarıq transferi planlanmayıb.</div>
-      </div>
-      <div class="s7-align-item s7-align-warn">
-        <div class="s7-align-pair">Struktur ↔ Sistem</div>
-        <div class="s7-align-desc">Modul strukturu mövcuddur, lakin modullar aktivləşdirilməyib. Struktur ilə faktiki sistem istifadəsi arasında böyük fərq var.</div>
-      </div>
-      <div class="s7-align-item s7-align-warn">
-        <div class="s7-align-pair">Heyət ↔ Sistem</div>
-        <div class="s7-align-desc">Heyət sistemə etibarı itirərək Excel-ə keçib. Sistem heyəti dəstəkləmir — heyət sistemi bypass edir.</div>
-      </div>
-      <div class="s7-align-item s7-align-warn">
-        <div class="s7-align-pair">Üslub ↔ Strategiya</div>
-        <div class="s7-align-desc">Vendor-centric idarəetmə üslubu dəyişdirilmədən strateji məqsədlərə çatmaq mümkün deyil. Üslub transformasiya tələb edir.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ===== 3. MATURITY MODEL ===== -->
@@ -1457,7 +1254,7 @@ Müqayisə üçün qeyd: çəkisiz sadə ortalama metodologiyası ilə eyni data
     <div class="mat-row">
       <div class="mat-label">
         <div class="mat-name">İşə Qəbul (ATS)</div>
-        <div class="mat-note">ATS modulu yox, Handflow ilə işləyir</div>
+        <div class="mat-note">ATS modulu yox, Huntflow ilə işləyir</div>
       </div>
       <div class="mat-track-wrap">
         <div class="mat-track"><div class="mat-fill" style="width:0%" data-w="38" data-color="#FF5200"></div></div>
@@ -2081,11 +1878,11 @@ const auditData=[
   {m:"Vəzifə İdarəetməsi",f:"Ştat Cədvəli",r:"High",n:"Mövcuddur, lakin ştat sayları düzgün izlənilmir. Vəzifə adları ilə masterfile arasında uyğunsuzluqlar var."},
   {m:"Vəzifə İdarəetməsi",f:"Vakansiya İdarəsi",r:"Medium",n:"ATS inteqrasiyası olmadığından vakansiya axını kəsilib. İki sistem arasında manual keçid tələb olunur."},
   {m:"Vəzifə İdarəetməsi",f:"Kütləvi Köçürmə",r:"Medium",n:"Mümkündür, lakin sistemin qeyri-stabil işləməsinə görə tətbiq edilmir."},
-  {m:"İşə Qəbul (ATS)",f:"ATS Modulu",r:"High",n:"HRIS-də ATS modulu yoxdur. Handflow (rus sistemi) istifadə edilir. HRIS ilə inteqrasiya yoxdur."},
+  {m:"İşə Qəbul (ATS)",f:"ATS Modulu",r:"High",n:"HRIS-də ATS modulu yoxdur. Huntflow istifadə edilir. HRIS ilə inteqrasiya yoxdur."},
   {m:"İşə Qəbul (ATS)",f:"CV Parsing",r:"Low",n:"CV parsing mövcud deyil. Manual məlumat daxil etmə tələb olunur."},
-  {m:"İşə Qəbul (ATS)",f:"Namizəd İzləmə Sistemi",r:"Medium",n:"Handflow üzərindən aparılır. HRIS ilə sinxronizasiya yoxdur."},
+  {m:"İşə Qəbul (ATS)",f:"Namizəd İzləmə Sistemi",r:"Medium",n:"Huntflow üzərindən aparılır. HRIS ilə sinxronizasiya yoxdur."},
   {m:"İşə Qəbul (ATS)",f:"Structured İntervyu Aləti",r:"Medium",n:"Kompetensiyalar üzrə qiymətləndirmə üçün sistem yoxdur. Şifahi olaraq aparılır."},
-  {m:"İşə Qəbul (ATS)",f:"Job Offer Generasiyası",r:"Low",n:"Handflow + Jira inteqrasiyası var. Lakin proses Jira→manual çap→e-mail şəklindədir."},
+  {m:"İşə Qəbul (ATS)",f:"Job Offer Generasiyası",r:"Low",n:"Huntflow + Jira inteqrasiyası var. Lakin proses Jira→manual çap→e-mail şəklindədir."},
   {m:"İşə Qəbul (ATS)",f:"Background Check",r:"Medium",n:"Avtomatik background check məntiqi yoxdur. Ehtiyac olanda ƏMAS-da manual sorğu edilir."},
   {m:"İşə Qəbul (ATS)",f:"İşə Qəbul Analitikası",r:"Low",n:"Time-to-hire, cost-per-hire göstəriciləri avtomatik hesablanmır. Jira data-larından manual hesablana bilər."},
   {m:"İşə Qəbul (ATS)",f:"FİN Yoxlama Avtomatizasiyası",r:"High",n:"Avtomatik FİN əsaslı dövlət yoxlaması sistemi yoxdur. Manual ƏMAS sorğusu aparılır."},
@@ -2184,12 +1981,12 @@ const govData=[
     {s:"Bank sistemi inteqrasiyası",st:"f",sl:"Yoxdur",n:"İnternet Banking ilə birbaşa inteqrasiya yoxdur. Excel ilə manual köçürmə."},
     {s:"1C ERP inteqrasiyası",st:"f",sl:"Qurulmayıb",n:"1C olduğu üçün texniki imkan var, lakin qurulmayıb. Hesabatlar Excel-dən ötürülür."},
     {s:"iSpring (LMS/PM) inteqrasiyası",st:"f",sl:"Yoxdur",n:"iSpring ilə API inteqrasiyası yoxdur. Performance nəticələri manual köçürülür."},
-    {s:"Elektron imza inteqrasiyası",st:"w",sl:"Məhdud",n:"ASAN İmza saxlanılıb. ƏMAS üzrə telefon təsdiqi istifadə edilir."},
+    {s:"Elektron imza inteqrasiyası",st:"w",sl:"Məhdud",n:"ASAN İmza və ya digər gücləndirilmiş elektron imzalarla inteqrasiya mövcud deyi. ƏMAS üzrə telefon təsdiqi istifadə edilir."},
     {s:"DSMF (DOST) inteqrasiyası",st:"f",sl:"Yoxdur",n:"Avtomatik inteqrasiya yoxdur. Məlumatlar Excel-dən hazırlanaraq işlənilir."},
     {s:"Turniket/giriş sistemi",st:"f",sl:"Yoxdur",n:"Turniket məlumatları HRIS-ə ötürülmür. Absenteeism izlənilmir."},
   ]},
   {cat:"AZ Qanunvericiliyinə Uyğunluq",items:[
-    {s:"AZ Əmək Məcəlləsi lokalizasiyası",st:"f",sl:"Uyğun deyil",n:"Sistem Rusiya ƏM normaları ilə işləyir. Məzuniyyət balansı, gecə əmsalı, ezamiyyət normaları — hamısı düzgün deyil."},
+    {s:"AZ Əmək Məcəlləsi lokalizasiyası",st:"f",sl:"Uyğun deyil",n:"Sistem Rusiya ƏM normaları ilə işləyir. Məzuniyyət balansı, gecə əmsalı, ezamiyyət normaları — Boşluqlar mövcuddur"},
     {s:"1-Əmək hesabatı konfiqurasiyası",st:"f",sl:"Qurulmayıb",n:"Sistem üzərindən qurula bilər lakin edilməyib. Hazırda manual Excel ilə aparılır."},
     {s:"4-Əmək hesabatı konfiqurasiyası",st:"f",sl:"Qurulmayıb",n:"Sistem üzərindən qurula bilər lakin edilməyib."},
     {s:"DSMF hesabat avtomatizasiyası",st:"f",sl:"Manual Excel",n:"Excel cədvəllərdən hazırlanaraq işlənilir. Sistem üzərindən konfiqurasiya edilməyib."},
